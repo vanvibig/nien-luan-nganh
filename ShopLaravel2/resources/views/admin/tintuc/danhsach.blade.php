@@ -43,8 +43,11 @@
                                 <img height="80px" width="80px" src="public/source/image/product/{{ $new->image }}"
                                      alt="">
                             </td>
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a class="confirmation" href="admin/tintuc/xoa/{{ $new->id }}"> Xóa</a></td>
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/tintuc/sua/{{ $new->id }}">Sửa</a></td>
+                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a class="confirmation"
+                                                                                      href="admin/tintuc/xoa/{{ $new->id }}">
+                                    Xóa</a></td>
+                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a
+                                        href="admin/tintuc/sua/{{ $new->id }}">Sửa</a></td>
                         </tr>
                     @endforeach
                     </tbody>
