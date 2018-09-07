@@ -17,7 +17,7 @@
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                     <tr align="center">
-                        <th style="text-align: center">ID</th>
+                        {{--<th style="text-align: center">ID</th>--}}
                         <th style="text-align: center">ID Hoá đơn</th>
                         <th style="text-align: center">Khách hàng</th>
                         {{--<th>ID Sản phẩm</th>--}}
@@ -30,7 +30,7 @@
                     </thead>
                     <tbody>
                     <tr class="odd gradeX" align="center">
-                        <td>{{ $bill_detail_1->id }}</td>
+                        {{--<td>{{ $bill_detail_1->id }}</td>--}}
                         <td>{{ $bill_detail_1->id_bill }}</td>
                         <td><a href="{{ route('chitietkhachhang', $bill_detail_1->bill->customer->id) }}">{{ $bill_detail_1->bill->customer->name }}</a></td>
                         <td>

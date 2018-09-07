@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2018 at 05:33 PM
+-- Generation Time: Sep 07, 2018 at 01:24 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -32,11 +32,11 @@ USE `db_banhang`;
 
 CREATE TABLE `authors` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8 NOT NULL,
   `yearofbirth` int(11) NOT NULL,
-  `gender` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `gender` varchar(10) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `authors`
@@ -49,7 +49,8 @@ INSERT INTO `authors` (`id`, `name`, `image`, `yearofbirth`, `gender`) VALUES
 (6, 'Fujiko Fujio', 'fujiko-f-fujio-doraemon-tg.jpg', 1933, 'nam'),
 (7, 'Takeuchi Naoko', 'naoko-takeuchi-sailor-moon-tg.jpg', 1967, 'nam'),
 (8, 'Jun Maeda', 'jun-maeda-angel-beats-clannad-tg.jpg', 1975, 'nam'),
-(9, 'K V', '13010688_1793681217526743_4355835426389057155_n.jpg', 1997, 'nam');
+(9, 'K V', '13010688_1793681217526743_4355835426389057155_n.jpg', 1997, 'nam'),
+(10, 're tesst', 'rdyE_images1294408_chuoi4.jpg', 11111, 'nam');
 
 -- --------------------------------------------------------
 
@@ -59,24 +60,21 @@ INSERT INTO `authors` (`id`, `name`, `image`, `yearofbirth`, `gender`) VALUES
 
 CREATE TABLE `bills` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_customer` int(11) DEFAULT NULL,
+  `id_customer` int(10) UNSIGNED DEFAULT NULL,
   `date_order` date DEFAULT NULL,
   `total` float DEFAULT NULL COMMENT 'tổng tiền',
-  `payment` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'hình thức thanh toán',
-  `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `payment` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'hình thức thanh toán',
+  `note` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `bills`
 --
 
 INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `payment`, `note`, `created_at`, `updated_at`) VALUES
-(1, 1, '2018-04-01', 300123, 'COD', 'nhanh', '2018-04-01 11:18:51', '2018-04-01 11:18:51'),
-(2, 2, '2018-04-03', 150000, 'COD', '12345', '2018-04-03 16:02:53', '2018-04-03 16:02:53'),
-(3, 3, '2018-04-09', 150246, 'COD', 'kvtttt', '2018-04-09 02:42:35', '2018-04-09 02:42:35'),
-(4, 4, '2018-04-27', 150000, 'COD', 'sss', '2018-04-27 09:24:00', '2018-04-27 09:24:00');
+(6, 6, '2018-09-07', 494000, 'COD', '1526357485', '2018-09-07 11:23:01', '2018-09-07 11:23:01');
 
 -- --------------------------------------------------------
 
@@ -85,26 +83,21 @@ INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `payment`, `not
 --
 
 CREATE TABLE `bill_details` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_bill` int(10) NOT NULL,
-  `id_product` int(10) NOT NULL,
-  `quantity` int(11) NOT NULL COMMENT 'số lượng',
+  `id_bill` int(10) UNSIGNED NOT NULL,
+  `id_product` int(10) UNSIGNED NOT NULL,
+  `quantity` int(11) NOT NULL,
   `unit_price` double NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `bill_details`
 --
 
-INSERT INTO `bill_details` (`id`, `id_bill`, `id_product`, `quantity`, `unit_price`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 2, 150000, '2018-04-01 11:18:51', '2018-04-01 11:18:51'),
-(2, 1, 6, 1, 123, '2018-04-01 11:18:51', '2018-04-01 11:18:51'),
-(3, 2, 2, 1, 150000, '2018-04-03 16:02:53', '2018-04-03 16:02:53'),
-(4, 3, 2, 1, 150000, '2018-04-09 02:42:35', '2018-04-09 02:42:35'),
-(5, 3, 6, 2, 123, '2018-04-09 02:42:35', '2018-04-09 02:42:35'),
-(6, 4, 2, 1, 150000, '2018-04-27 09:24:00', '2018-04-27 09:24:00');
+INSERT INTO `bill_details` (`id_bill`, `id_product`, `quantity`, `unit_price`, `created_at`, `updated_at`) VALUES
+(6, 3, 2, 22000, '2018-09-07 11:23:01', '2018-09-07 11:23:01'),
+(6, 1, 2, 200000, '2018-09-07 11:23:01', '2018-09-07 11:23:01');
 
 -- --------------------------------------------------------
 
@@ -122,17 +115,28 @@ CREATE TABLE `customer` (
   `note` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`id`, `name`, `gender`, `email`, `address`, `phone_number`, `note`, `created_at`, `updated_at`) VALUES
-(1, 'Kido Vu', 'nam', 'kidovu@gmail.com', '3/2', '123456789', 'nhanh', '2018-04-01 11:18:51', '2018-04-01 11:18:51'),
-(2, 'KV tttt', 'nam', 'kvttt@gmail.com', 'ct', '1234567', '12345', '2018-04-03 16:02:53', '2018-04-03 16:02:53'),
-(3, 'KV ttt', 'nam', 'kv@gmail.com', 'qưertyuio', '123456789', 'kvtttt', '2018-04-09 02:42:35', '2018-04-09 02:42:35'),
-(4, 'sssss', 'nam', 'sss@gmail.com', 'ádfgh', '123456789', 'sss', '2018-04-27 09:24:00', '2018-04-27 09:24:00');
+(6, 'Nguyen Van Vi', 'nam', 'vanvibgi2@gmail.com', '1243254365', '14325436547658', '1526357485', '2018-09-07 11:23:01', '2018-09-07 11:23:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `khuyenmai`
+--
+
+CREATE TABLE `khuyenmai` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `start` date NOT NULL,
+  `end` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -142,12 +146,12 @@ INSERT INTO `customer` (`id`, `name`, `gender`, `email`, `address`, `phone_numbe
 
 CREATE TABLE `news` (
   `id` int(10) NOT NULL,
-  `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'tiêu đề',
-  `content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'nội dung',
-  `image` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'hình',
+  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT 'tiêu đề',
+  `content` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'nội dung',
+  `image` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'hình',
   `create_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `update_at` timestamp NULL DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `news`
@@ -195,7 +199,8 @@ INSERT INTO `products` (`id`, `name`, `id_type`, `description`, `amount`, `unit_
 (9, 'Koe no Katachi', NULL, '<p>As a wild youth, elementary school student Shouya Ishida sought to beat boredom in the cruelest ways. When the deaf Shouko Nishimiya transfers into his class, Shouya and the rest of his class thoughtlessly bully her for fun. However, when her mother notifies the school, he is singled out and blamed for everything done to her. With Shouko transferring out of the school, Shouya is left at the mercy of his classmates. He is heartlessly ostracized all throughout elementary and middle school, while teachers turn a blind eye. Now in his third year of high school, Shouya is still plagued by his wrongdoings as a young boy. Sincerely regretting his past actions, he sets out on a journey of redemption: to meet Shouko once more and make amends. Koe no Katachi tells the heartwarming tale of Shouya\'s reunion with Shouko and his honest attempts to redeem himself, all while being continually haunted by the shadows of his past.</p>', 7, 222, 223, 'koenotachi_sps.jpg', 'cuốn', 1, 2, '2018-04-01 08:12:20', '2018-04-23 00:36:09'),
 (10, 'Shigatsu wa Kimi no Uso', NULL, 'Music accompanies the path of the human metronome, the prodigious pianist Kousei Arima. But after the passing of his mother, Saki Arima, Kousei falls into a downward spiral, rendering him unable to hear the sound of his own piano.\r\n\r\nTwo years later, Kousei still avoids the piano, leaving behind his admirers and rivals, and lives a colorless life alongside his friends Tsubaki Sawabe and Ryouta Watari. However, everything changes when he meets a beautiful violinist, Kaori Miyazono, who stirs up his world and sets him on a journey to face music again.\r\n\r\nBased on the manga series of the same name, Shigatsu wa Kimi no Uso approaches the story of Kousei\'s recovery as he discovers that music is more than playing each note perfectly, and a single melody can bring in the fresh spring air of April.', 9, 333, NULL, 'am-nhac.jpg', 'cuốn', 1, 2, '2018-04-01 08:14:00', '2018-04-09 02:39:25'),
 (11, 'Sword Art Online', NULL, 'In the year 2022, virtual reality has progressed by leaps and bounds, and a massive online role-playing game called Sword Art Online (SAO) is launched. With the aid of \"NerveGear\" technology, players can control their avatars within the game using nothing but their own thoughts.\r\n\r\nKazuto Kirigaya, nicknamed \"Kirito,\" is among the lucky few enthusiasts who get their hands on the first shipment of the game. He logs in to find himself, with ten-thousand others, in the scenic and elaborate world of Aincrad, one full of fantastic medieval weapons and gruesome monsters. However, in a cruel turn of events, the players soon realize they cannot log out; the game\'s creator has trapped them in his new world until they complete all one hundred levels of the game.\r\n\r\nIn order to escape Aincrad, Kirito will now have to interact and cooperate with his fellow players. Some are allies, while others are foes, like Asuna Yuuki, who commands the leading group attempting to escape from the ruthless game. To make matters worse, Sword Art Online is not all fun and games: if they die in Aincrad, they die in real life. Kirito must adapt to his new reality, fight for his survival, and hopefully break free from his virtual hell.', 11, 444, NULL, 'sao_sp.jpg', 'cuốn', 1, 4, '2018-04-01 08:16:57', '2018-04-27 09:39:26'),
-(12, 'Conan', NULL, '<p><span style=\"color:rgb(0, 0, 0); font-family:verdana,arial; font-size:11px\">Hailed as the savior of the Japanese Police Department, high school detective Shinichi Kudou uses a combination of observational skills, critical thinking, and all-around knowledge to solve cases that leave the police stumped.&nbsp;</span><br />\r\n<br />\r\n<span style=\"color:rgb(0, 0, 0); font-family:verdana,arial; font-size:11px\">One day, while at an outing with childhood friend Ran Mouri, Shinichi bears witness to a suspicious transaction between two men and is caught. As a result, he is forced to ingest a poison that is supposed to kill him, but unexpectedly shrinks his body to the size of a grade-schooler instead. Now believed to be dead, Shinichi takes up the alias of Conan Edogawa (a compound of the names of the famous mystery authors Arthur Conan Doyle and Ranpo Edogawa) in order to hide his identity and begins his new life as a seven-year-old living with Ran and her private detective father.&nbsp;</span><br />\r\n<br />\r\n<em>Detective Conan</em><span style=\"color:rgb(0, 0, 0); font-family:verdana,arial; font-size:11px\">&nbsp;follows Conan as he continues to solve murder cases, all while slowly working toward exposing the men who shrunk him and eventually restoring his body.</span></p>', 7, 123, 122, 'conan_sp.jpg', 'cuốn', 1, 1, '2018-04-27 04:20:52', '2018-04-27 04:23:22');
+(12, 'Conan', NULL, '<p><span style=\"color:rgb(0, 0, 0); font-family:verdana,arial; font-size:11px\">Hailed as the savior of the Japanese Police Department, high school detective Shinichi Kudou uses a combination of observational skills, critical thinking, and all-around knowledge to solve cases that leave the police stumped.&nbsp;</span><br />\r\n<br />\r\n<span style=\"color:rgb(0, 0, 0); font-family:verdana,arial; font-size:11px\">One day, while at an outing with childhood friend Ran Mouri, Shinichi bears witness to a suspicious transaction between two men and is caught. As a result, he is forced to ingest a poison that is supposed to kill him, but unexpectedly shrinks his body to the size of a grade-schooler instead. Now believed to be dead, Shinichi takes up the alias of Conan Edogawa (a compound of the names of the famous mystery authors Arthur Conan Doyle and Ranpo Edogawa) in order to hide his identity and begins his new life as a seven-year-old living with Ran and her private detective father.&nbsp;</span><br />\r\n<br />\r\n<em>Detective Conan</em><span style=\"color:rgb(0, 0, 0); font-family:verdana,arial; font-size:11px\">&nbsp;follows Conan as he continues to solve murder cases, all while slowly working toward exposing the men who shrunk him and eventually restoring his body.</span></p>', 7, 123, 122, 'conan_sp.jpg', 'cuốn', 1, 1, '2018-04-27 04:20:52', '2018-04-27 04:23:22'),
+(13, 're tesst', NULL, '<p>re tesst</p>', 12, 123, 12, 'dnY0_images1294408_chuoi4.jpg', 'sa', 1, 0, '2018-09-07 11:05:10', '2018-09-07 11:05:10');
 
 -- --------------------------------------------------------
 
@@ -206,7 +211,7 @@ INSERT INTO `products` (`id`, `name`, `id_type`, `description`, `amount`, `unit_
 CREATE TABLE `product_author` (
   `product_id` int(10) UNSIGNED NOT NULL,
   `author_id` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_author`
@@ -218,7 +223,9 @@ INSERT INTO `product_author` (`product_id`, `author_id`) VALUES
 (3, 1),
 (4, 8),
 (5, 5),
-(12, 1);
+(12, 1),
+(13, 4),
+(13, 9);
 
 -- --------------------------------------------------------
 
@@ -229,13 +236,14 @@ INSERT INTO `product_author` (`product_id`, `author_id`) VALUES
 CREATE TABLE `product_type_detail` (
   `product_id` int(10) UNSIGNED NOT NULL,
   `type_id` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_type_detail`
 --
 
 INSERT INTO `product_type_detail` (`product_id`, `type_id`) VALUES
+(12, 2),
 (1, 3),
 (1, 5),
 (2, 2),
@@ -252,7 +260,6 @@ INSERT INTO `product_type_detail` (`product_id`, `type_id`) VALUES
 (7, 11),
 (7, 12),
 (8, 13),
-(8, 14),
 (9, 3),
 (9, 11),
 (9, 15),
@@ -270,7 +277,23 @@ INSERT INTO `product_type_detail` (`product_id`, `type_id`) VALUES
 (12, 2),
 (12, 5),
 (12, 8),
-(12, 11);
+(12, 11),
+(13, 7),
+(13, 13),
+(13, 19);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sanpham_khuyenmai`
+--
+
+CREATE TABLE `sanpham_khuyenmai` (
+  `sp_id` int(11) UNSIGNED NOT NULL,
+  `km_id` int(11) UNSIGNED NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `discount` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -280,9 +303,9 @@ INSERT INTO `product_type_detail` (`product_id`, `type_id`) VALUES
 
 CREATE TABLE `slides` (
   `id` int(11) NOT NULL,
-  `link` varchar(100) NOT NULL,
-  `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `link` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `image` varchar(100) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `slides`
@@ -303,12 +326,12 @@ INSERT INTO `slides` (`id`, `link`, `image`) VALUES
 
 CREATE TABLE `type_details` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8 NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `type_details`
@@ -334,7 +357,8 @@ INSERT INTO `type_details` (`id`, `name`, `description`, `image`, `created_at`, 
 (18, 'Fantasy', 'Tưởng tượng', 'fantasy.jpg', '2018-04-01 08:15:24', '2018-04-01 08:15:24'),
 (19, 'Seinen', 'Người lớn', 'seinen_type.jpg', '2018-04-01 08:21:12', '2018-04-01 08:21:12'),
 (20, 'Mystery', 'Huyền bí', 'mystery_type.jpg', '2018-04-01 08:23:08', '2018-04-01 08:23:08'),
-(21, 'Horror', 'Kinh dị', 'horror_type.jpg', '2018-04-01 08:24:38', '2018-04-01 08:24:38');
+(21, 'Horror', 'Kinh dị', 'horror_type.jpg', '2018-04-01 08:24:38', '2018-04-01 08:24:38'),
+(22, 're tesst', '<p>re tesst</p>', 'images1294408_chuoi4.jpg', '2018-09-07 11:04:19', '2018-09-07 11:04:19');
 
 -- --------------------------------------------------------
 
@@ -385,10 +409,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `full_name`, `email`, `level`, `password`, `phone`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
 (6, 'Hương Hương', 'huonghuong08.php@gmail.com', 0, '$2y$10$rGY4KT6ZSMmLnxIbmTXrsu2xdgRxm8x0UTwCyYCAzrJ320kYheSRq', '23456789', 'Hoàng Diệu 2', NULL, '2017-03-23 07:17:33', '2017-03-23 07:17:33'),
-(12, 'Kudo Vĩ 2', 'vanvibig@gmail.com', 1, '$2y$10$/KzP2ER9f.lKNUMqmtW81uWPw/3656b6mFRC8z69kl6kNrrVx92jy', '009876543 2', 'Cần THơ 2', '9dJXZdrmjs0Q6dS5SM484xLGYT1qHdJGUDwf1AuP6jQcIUL6O3hMoLqSvnQY', '2018-03-21 08:12:00', '2018-03-22 02:53:41'),
-(13, 'Kudo Vĩ 3', 'kv@gmail.com', 2, '$2y$10$KnLSRDrx6zqnxZFJTtMi9ORT5PPBCCJEFPO.8EFC.PFWeWjHnH.om', '09876543', 'Cần THơ', '2oxb8PQ4PXDwvLrWKsWe54D3vX2T7TbHOpqD46JWu0mE1sVmRYopRGafF9zJ', '2018-03-25 08:08:42', '2018-04-03 08:16:06'),
+(12, 'Kudo Vĩ 2', 'vanvibig@gmail.com', 1, '$2y$10$/KzP2ER9f.lKNUMqmtW81uWPw/3656b6mFRC8z69kl6kNrrVx92jy', '009876543 2', 'Cần THơ 2', 'vmHQ3Wh9pMCc14hvAmkesVVe0vvqJAhlp55EsEME0OyJDUsMiTlBeXcFbBE8', '2018-03-21 08:12:00', '2018-03-22 02:53:41'),
+(13, 'Kudo Vĩ 3', 'kv@gmail.com', 2, '$2y$10$KnLSRDrx6zqnxZFJTtMi9ORT5PPBCCJEFPO.8EFC.PFWeWjHnH.om', '09876543', 'Cần THơ', 'vlfygoOIIMypfYf9338rTkCsdo4E5mytDYs7KQJLFT0AD4PF1tZ1kOz6JN9b', '2018-03-25 08:08:42', '2018-04-03 08:16:06'),
 (18, 'kv3', 'kv3@gmail.com', 0, '$2y$10$/Xctj2ZewPtmQrqsL9ee1.LtEL8TnB3tFdPyt3llrfMAQ68m7Blga', '123456789', 'ct', NULL, '2018-04-28 08:15:18', '2018-04-28 08:36:11'),
-(19, 'kv4', 'kv4@gmail.com', 2, '$2y$10$iCndqIjJM9eXFIri/MgHqOsX4XRwoupHYI9ZHi.jKxWqCsYf8uQe.', '012345678', 'ct', 'aeTgAogb8SWWYvvvss2UqucObRJhkhps7MUtMTs2ybjnAtsTGrR0OW3E8tly', '2018-04-28 08:22:01', '2018-04-28 08:56:45');
+(19, 'kv4', 'kv4@gmail.com', 2, '$2y$10$iCndqIjJM9eXFIri/MgHqOsX4XRwoupHYI9ZHi.jKxWqCsYf8uQe.', '012345678', 'ct', 'aeTgAogb8SWWYvvvss2UqucObRJhkhps7MUtMTs2ybjnAtsTGrR0OW3E8tly', '2018-04-28 08:22:01', '2018-04-28 08:56:45'),
+(20, 're tesst', 'test@kv.com', 0, '$2y$10$.M8exxlIA8QQIcwRvVC03.d47Qlhu2ZmCN7hspsy25QlS1y/1yfJC', '123456', '111 Hai Bà Trưng, Bến Nghé, District 1, Ho Chi Minh City, Vietnam, 111, Hai Bà Trưng', NULL, '2018-09-07 11:05:49', '2018-09-07 11:05:49');
 
 --
 -- Indexes for dumped tables
@@ -411,13 +436,19 @@ ALTER TABLE `bills`
 -- Indexes for table `bill_details`
 --
 ALTER TABLE `bill_details`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `bill_detail_ibfk_2` (`id_product`);
+  ADD KEY `id_bill` (`id_bill`),
+  ADD KEY `id_product` (`id_product`);
 
 --
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `khuyenmai`
+--
+ALTER TABLE `khuyenmai`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -430,8 +461,7 @@ ALTER TABLE `news`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `products_id_type_foreign` (`id_type`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `product_author`
@@ -445,9 +475,15 @@ ALTER TABLE `product_author`
 -- Indexes for table `product_type_detail`
 --
 ALTER TABLE `product_type_detail`
-  ADD PRIMARY KEY (`product_id`,`type_id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `type_id` (`type_id`);
+  ADD KEY `fk_to_theloai` (`type_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `sanpham_khuyenmai`
+--
+ALTER TABLE `sanpham_khuyenmai`
+  ADD KEY `sp_id` (`sp_id`),
+  ADD KEY `km_id` (`km_id`);
 
 --
 -- Indexes for table `slides`
@@ -482,25 +518,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `bill_details`
---
-ALTER TABLE `bill_details`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -512,7 +542,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `slides`
@@ -524,7 +554,7 @@ ALTER TABLE `slides`
 -- AUTO_INCREMENT for table `type_details`
 --
 ALTER TABLE `type_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `type_products`
@@ -536,17 +566,45 @@ ALTER TABLE `type_products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `products`
+-- Constraints for table `bills`
 --
-ALTER TABLE `products`
-  ADD CONSTRAINT `products_id_type_foreign` FOREIGN KEY (`id_type`) REFERENCES `type_products` (`id`);
+ALTER TABLE `bills`
+  ADD CONSTRAINT `fk_bill_to_customer` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `bill_details`
+--
+ALTER TABLE `bill_details`
+  ADD CONSTRAINT `fk_billdetail_to_bill` FOREIGN KEY (`id_bill`) REFERENCES `bills` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_billdetail_to_product` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_author`
+--
+ALTER TABLE `product_author`
+  ADD CONSTRAINT `fk_to_author` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_to_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_type_detail`
+--
+ALTER TABLE `product_type_detail`
+  ADD CONSTRAINT `fk_to_sanpham2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_to_theloai` FOREIGN KEY (`type_id`) REFERENCES `type_details` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sanpham_khuyenmai`
+--
+ALTER TABLE `sanpham_khuyenmai`
+  ADD CONSTRAINT `fk_to_khuyenmai` FOREIGN KEY (`km_id`) REFERENCES `khuyenmai` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_to_sanpham` FOREIGN KEY (`sp_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
