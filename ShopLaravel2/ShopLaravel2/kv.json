@@ -1,0 +1,181 @@
+{
+    /**
+     * Kudo Vĩ
+     * Nhật kí làm việc
+     * Dự án niên luận cơ sở: Website bán truyện
+     */
+
+    "12:47 PM, 18/02/2018": "12.PHP Laravel 5x - Website bán hàng  Bài 11-   Đọc Chi Tiết Sản Phẩm",
+
+    "12:42 PM, 06/03/2018": "PHP Laravel 5x - Website bán hàng Bài 13: Xóa Giỏ Hàng",
+
+    "04:25 PM, 06/03/2018": "PHP Laravel 5x - Website bán hàng Bài 14: Lưu Thông Tin Đơn Hàng Vào Database Phần 1",
+
+    "05:08 PM, 11/03/2018": "PHP Laravel 5x - Website bán hàng Bài 15: Lưu Thông Tin Đơn Hàng Vào Database Phần 2",
+
+    "07:14 PM, 11/03/2018": "PHP Laravel 5x - Website bán hàng Bài 16: Cắt Layout Trang Đăng Kí, Đăng Nhập",
+
+    "07:49 PM, 11/03/2018 | xong": "https://youtu.be/tgdBF7PvRhs?t=12m15s",
+
+    "10:52 PM, 13/03/2018": "PHP Laravel 5x - Website bán hàng Bài 19: Chức Năng Tìm Kiếm",
+
+    "03:50 PM, 13/03/2018": [
+        "Bài 6: Tạo danh sách thể loại",
+        "https://www.youtube.com/watch?v=kqoiFHoYAUc", [
+            "Tạo được danh sách loại sản phẩm"
+        ]
+    ],
+
+    "10:41 PM, 14/03/2018": [
+        "Bài 8: Sửa và xoá thể loại",
+        "https://youtu.be/J_dmVQNknTY?t=19m36s", [
+            "Chưa xong"
+        ]
+    ],
+
+    "10:17 AM, 20/03/2018": [
+        "Bài 14: Nhúng trình soạn thảo văn bản",
+        "https://www.youtube.com/watch?v=_U49AAtYxaU&index=56&list=PLzrVYRai0riQ-K705397wDnlhhWu-gAUh",
+        "Chưa xong thêm sản phẩm"
+    ],
+
+    "04:05 PM, 20/03/2018": [
+        "Bài 16: Sửa và xoá tin tức",
+        "https://www.youtube.com/watch?v=NhxEb4PdcbQ&index=58&list=PLzrVYRai0riQ-K705397wDnlhhWu-gAUhs",
+        "Xong thêm tin tức, chưa sửa, chưa xóa"
+    ],
+
+    "10:50 AM, 21/03/2018": [
+        "Bài 21: Tạo trang sửa xoá User",
+        "https://youtu.be/u8-5lLT4wsY?t=7m23s",
+        "Đang sửa user, chưa xong"
+    ],
+    "04:03 PM, 21/03/2018": [
+        "Bài 22: Tạo trang đăng nhập",
+        "https://youtu.be/B3x0ckQxj8I?t=9m42s",
+        "Đang làm admin đăng nhập"
+    ],
+    "07:04 PM, 25/03/2018": [
+        "Chưa làm slide",
+        "có lẽ còn những cái khác, tự nhớ",
+        "đã tắt Exception Handler"
+    ],
+    "10:53 AM, 26/03/2018": [
+        "Đang làm chi tiết hoá đơn"
+    ],
+    "04:03 PM, 26/03/2018": [
+        "Back end hình như đã xong",
+        "Dữ liệu vẫn còn là bánh",
+        "Sẽ làm: dữ liêu truyện tranh, các thuộc tính như tác giả",
+        "Làm tin tức side bar"
+    ],
+    "04:04 PM, 27/03/2018": [
+        "Xông hiển thị tin tức",
+        "Chưa: https://freetuts.net/tich-hop-ckfinder-vao-ckeditor-bang-javascript-190.html",
+        "Chưa: https://www.youtube.com/watch?v=jG-49wDPGGQ"
+    ],
+    "04:44 PM, 28/03/2018": [
+        "Hiển thị thể loại cho viewer thường",
+        "Chưa làm thêm sửa xoá thể loại"
+    ],
+    "02:16 PM, 29/03/2018": [
+        "chưa làm sản phẩm mới giá trong chi tiết sản phẩm",
+        "chưa hiển thị thêm sửa xoá thể loại chi tiết trong admin",
+        "sẽ làm: Không cho hiển thị type product, chỉ hiển thị TypeDetail"
+    ],
+    "10:45 AM, 30/03/2018": [
+        "xoá xong loại sản phẩm trong các trang loại sản phẩm, chi tiết sản phẩm, trang chủ",
+        "sẽ làm thêm, sửa, xoá loại chi tiết",
+        "sẽ làm route cho nhân viên",
+        "sẽ làm đếm lượt view sản phẩm"
+    ],
+    "09:35 PM, 30/03/2018": [
+        "chưa làm admin sửa sản phẩm, xoá sản phẩm",
+        "chưa sửa lại một số hiển thị sản phẩm, trang giới thiệu, liên hệ",
+        "chưa làm đếm lượt view",
+        "chưa làm route cho nhân viên"
+    ],
+    "11:15 AM, 01/04/2018": [
+        "xong lượt view",
+        "xong sản phẩm",
+        "chưa làm route cho nhân viên",
+        "chưa làm giới thiệu, liên hệ và phân trang",
+        "chưa làm lại menu, màu cho navbar"
+    ],
+    "08:55 PM, 01/04/2018": [
+        "đang làm giao diện dễ nhìn hơn, chưa xong"
+    ],
+    "11:09 AM, 02/04/2018": [
+        "xong hiển thị trang chủ"
+    ],
+    "05:11 PM, 02/04/2018": [
+        "coi như xong giao diện",
+        "viết báo cáo"
+    ],
+    "09:42 AM, 03/04/2018": [
+        "đang viết báo cáo",
+        {
+            "Nếu còn thời gian sẽ làm": [
+                "tìm kiếm theo view ngày, view tháng, view năm bằng ajax",
+                "chức năng tìm kiếm tổng hợp ở một trang riêng theo: view, mới, mới thêm, mới cập nhật, thể loại, tên"
+            ]
+        },
+        "chưa đổi màu title của div cho trùng với những thằng còn lại",
+        "chưa làm siêu tìm kiếm",
+        "Nếu còn thời gian sẽ làm bảng tác giả, bảng nhân vật, mối quan hệ giữa các nhân vật",
+        "Nếu còn thời gian sẽ làm nút số lượng hoạt động được"
+    ],
+    "12:11 AM, 04/04/2018": [
+        "xong 2.1 Đặt tả yêu cầu"
+    ],
+    "10:57 AM, 05/04/2018": [
+        "Xong live search",
+        "chưa làm tiếp báo cáo"
+    ],
+    "10:42 AM, 06/04/2018": [
+        "vẽ xong usecase",
+        "chưa chỉnh lại giao diện giỏ hàng",
+        {
+            "Chưa làm tác giả": [
+                "Admin: Thêm sửa xóa",
+                "Khách hàng: tìm",
+                "Thêm các link vào các trang"
+            ]
+        }
+    ],
+    "07:54 PM, 08/04/2018": [
+        "đang viết báo cáo",
+        "phần usecase mô tả được 5/(ba mươi mấy)"
+    ],
+    "10:52 AM, 09/04/2018": [
+        "xong mô tả usecase của khách hàng",
+        "đang làm tác giả, mới làm xong giao diện, còn máy cái name của input chưa sửa"
+
+    ],
+    "04:53 PM, 09/04/2018": [
+        "xong admin tác giả",
+        "đang thêm tác giả link vào các sản phẩm ở giao diện khách hàng",
+        "đang ở trang chủ, chưa xong",
+        "chưa làm siêu lọc",
+        "kiểm tra nếu hàng đã có trong giỏ cộng với 1 hàng sắp thêm vào mà lớn hơn hàng có trong kho thì không thêm đc"
+    ],
+    "11:35 PM, 09/04/2018": [
+        "coi như xong giỏ hàng",
+        "siêu tìm kiếm chưa làm",
+        "bể giao diện khách hàng do thêm tác giả"
+    ],
+    "03:55 PM, 10/04/2018": [
+        "xong usecase thêm, sửa, xóa sản phẩm"
+    ],
+    "05:31 PM, 27/04/2018": [
+        "Xong thống kê doanh thu trên code",
+        "Chưa thêm thống kê doanh thu trên file word và usecase"
+    ],
+    "05:15 PM, 28/04/2018": [
+        "Mô tả giao diện xong các chức năng",
+        "Chưa mô tả phần thống kê"
+    ],
+    "04:22 PM, 30/04/2018": [
+        "Coi như xong file word và file powerpoint cho báo cáo niên luận cơ sở"
+    ]
+}
