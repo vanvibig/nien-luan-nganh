@@ -183,6 +183,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
         Route::get('xoa/{id}', 'TypeController@getXoa');
     });
 
+    Route::group(['prefix' => 'khuyenmai'], function () {
+        Route::get('danhsach', 'PromotionController@getDanhSach');
+
+        Route::get('sua/{id}', 'PromotionController@getSua');
+        Route::post('sua/{id}', 'PromotionController@postSua');
+
+        Route::get('them', 'PromotionController@getThem');
+        Route::post('them', 'PromotionController@postThem');
+
+        Route::get('xoa/{id}', 'PromotionController@getXoa');
+    });
+
     Route::group(['prefix' => 'tacgia'], function () {
         Route::get('danhsach', 'AuthorController@getDanhSach');
 

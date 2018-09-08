@@ -4,7 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property boolean $status
+ * @property string $start
+ * @property string $end
+ * @property Product[] $product
+ */
 class Promotion extends Model  {
+
+    public $timestamps = false;
 
     /**
      * The database table used by the model.
@@ -40,7 +50,6 @@ class Promotion extends Model  {
      * @var array
      */
     protected $dates = ['start', 'end'];
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
