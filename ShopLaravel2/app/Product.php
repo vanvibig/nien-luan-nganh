@@ -109,6 +109,6 @@ class Product extends Model
      */
     public function promotion()
     {
-        return $this->belongsToMany('App\Promotion', 'product_promotion', 'product_id', 'km_id');
+        return $this->belongsToMany('App\Promotion', 'product_promotion', 'sp_id', 'km_id');
     }
 }

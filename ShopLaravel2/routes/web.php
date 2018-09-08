@@ -230,6 +230,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
         Route::get('xoa/{id}', 'ProductController@getXoa');
     });
 
+    Route::group(['prefix' => 'sanpham-khuyenmai'], function () {
+        Route::get('danhsach', 'ProductPromotionController@getDanhSach')->name('spkm_ds');
+
+        Route::get('sua/{id}', 'ProductPromotionController@getSua');
+        Route::post('sua/{id}', 'ProductPromotionController@postSua');
+
+        Route::get('them', 'ProductPromotionController@getThem');
+        Route::post('them', 'ProductPromotionController@postThem');
+
+        Route::get('xoa/{id}', 'ProductPromotionController@getXoa');
+    });
+
     Route::group(['prefix' => 'tintuc'], function () {
         Route::get('danhsach', 'NewsController@getDanhSach');
 

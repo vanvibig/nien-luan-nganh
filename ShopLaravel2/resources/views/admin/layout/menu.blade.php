@@ -61,6 +61,18 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
+                <a href="#"><i class="fa fa-cube fa-fw"></i> Sản phẩm khuyến mãi<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="admin/sanpham-khuyenmai/danhsach">Danh sách</a>
+                    </li>
+                    <li>
+                        <a href="admin/sanpham-khuyenmai/them">Thêm</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

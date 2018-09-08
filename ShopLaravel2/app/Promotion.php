@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property boolean $status
  * @property string $start
  * @property string $end
- * @property Product[] $product
+ * @property float $discount
+ * @property Product[] $products
  */
 class Promotion extends Model  {
 
@@ -28,7 +29,7 @@ class Promotion extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['id', 'name', 'status'];
+    protected $fillable = ['id', 'name', 'status', 'discount'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -55,7 +56,7 @@ class Promotion extends Model  {
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function product(){
-        return $this->belongsToMany('App\Product', 'product_promotion', 'km_id',  'product_id');
+        return $this->belongsToMany('App\Product', 'product_promotion', 'km_id',  'sp_id');
     }
 
 
