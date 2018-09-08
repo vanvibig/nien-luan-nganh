@@ -104,4 +104,11 @@ class Product extends Model
         return $this->belongsToMany('App\Author', 'product_author', 'product_id', 'author_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function promotion()
+    {
+        return $this->belongsToMany('App\Promotion', 'product_promotion', 'product_id', 'km_id');
+    }
 }
