@@ -80,7 +80,7 @@
                                             <lable>Lượt xem:</lable>
                                             {{ $spv->view_count }}
                                         </div>
-                                        @if($spv->promotion_price == 0)
+                                        @if($spv->promotion_price == 0  )
                                             <span>{{ number_format($spv->unit_price) }} đ</span>
                                         @else
                                             <span class="flash-del">{{ number_format($spv->unit_price) }}
@@ -115,11 +115,13 @@
                                                 <div class="single-item">
                                                     <div class="row w3-display-container">
                                                         <div class="col-sm-8">
-                                                            @if($new->promotion_price != 0)
-                                                                <div class="ribbon-wrapper">
-                                                                    <div class="ribbon sale">Sale</div>
-                                                                </div>
-                                                            @endif
+                                                            @foreach($new->promotion as $prom)
+                                                                @if($prom != null)
+                                                                    <div class="ribbon-wrapper">
+                                                                        <div class="ribbon sale">Sale</div>
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
                                                             <div class="single-item-header">
                                                                 <a href="{{ route('chitietsanpham', $new->id) }}"><img
                                                                             class=".img-fluid" style="height: 220px"
@@ -155,14 +157,13 @@
                                                             {{ $new->view_count }}
                                                         </div>
                                                         <p class="single-item-price">
-                                                            @if($new->promotion_price == 0)
-                                                                <span>{{ number_format($new->unit_price) }} đ</span>
-                                                            @else
-                                                                <span class="flash-del">{{ number_format($new->unit_price) }}
-                                                                    đ</span>
-                                                                <span class="flash-sale">{{ number_format($new->promotion_price) }}
-                                                                    đ</span>
-                                                            @endif
+                                                            <span>{{ number_format($new->unit_price) }} đ</span>
+                                                            @foreach($new->promotion as $prom)
+                                                                @if($prom)
+                                                                    <span class="flash-sale">{{ number_format($new->unit_price * (100 - $prom->discount)/100) }}
+                                                                        đ</span>
+                                                                @endif
+                                                            @endforeach
                                                         </p>
                                                     </div>
                                                     <div class="single-item-caption">
