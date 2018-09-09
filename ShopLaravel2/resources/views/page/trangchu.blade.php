@@ -160,8 +160,7 @@
                                                             <span>{{ number_format($new->unit_price) }} đ</span>
                                                             @foreach($new->promotion as $prom)
                                                                 @if($prom)
-                                                                    <span class="flash-sale">{{ number_format($new->unit_price * (100 - $prom->discount)/100) }}
-                                                                        đ</span>
+                                                                    <span class="flash-sale">&nbsp;-{{ $prom->discount}}%</span>
                                                                 @endif
                                                             @endforeach
                                                         </p>

@@ -62,7 +62,9 @@ class PageController extends Controller
         $sp_theoview = Product::limit(5)->orderByDesc('view_count')->get();
 
 //        foreach ($new_product as $newp){
-//            dd($newp->promotion[0]);
+//            foreach ($newp->promotion as $p){
+//                dd(is_null($p));
+//            }
 //        }
 
 
