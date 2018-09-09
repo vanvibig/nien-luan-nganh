@@ -37,6 +37,10 @@
                                    style="width: 10%"><span>Deactive</span>
                         </div>
                         <div class="form-group">
+                            <label>% giảm</label>
+                            <input required id="discount" name="discount" type="number">
+                        </div>
+                        <div class="form-group">
                             <label>Ngày bắt đầu</label>
                             <input required id="start" name="start" type="date">
                         </div>

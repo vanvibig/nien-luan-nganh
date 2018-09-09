@@ -34,6 +34,7 @@ class PromotionController extends Controller
         $promotion = new Promotion();
         $promotion->name = $req->name;
         $promotion->status = $req->status;
+        $promotion->discount = $req->discount;
         $promotion->start = $req->start;
         $promotion->end = $req->end;
         $promotion->save();
@@ -63,6 +64,7 @@ class PromotionController extends Controller
 
         $promotion->name = $req->name;
         $promotion->status = $req->status;
+        $promotion->discount = $req->discount;
         $promotion->start = $req->start;
         $promotion->end = $req->end;
         $promotion->save();

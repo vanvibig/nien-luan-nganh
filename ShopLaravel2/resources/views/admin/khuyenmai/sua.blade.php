@@ -44,6 +44,10 @@
                                    style="width: 10%"><span>Deactive</span>
                         </div>
                         <div class="form-group">
+                            <label>% giảm</label>
+                            <input value="{{ $promotion->discount }}" required id="discount" name="discount" type="number">
+                        </div>
+                        <div class="form-group">
                             <label>Ngày bắt đầu</label>
                             <input value="{{ $promotion->start->todatestring(), date('Y-m-d') }}" required id="start" name="start" type="date">
                         </div>

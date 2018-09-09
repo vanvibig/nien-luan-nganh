@@ -27,6 +27,7 @@
                         <th>ID</th>
                         <th>Tên</th>
                         <th>Trạng thái</th>
+                        <th>% giảm</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
                         <th>Xoá</th>
@@ -45,6 +46,7 @@
                                     {{ "Deactive" }}
                                 @endif
                             </td>
+                            <td>{{ $p->discount }}</td>
                             <td>{{ $p->start }}</td>
                             <td>{{ $p->end }}</td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a class="confirmation"
