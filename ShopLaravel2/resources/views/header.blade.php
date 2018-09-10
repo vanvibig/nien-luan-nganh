@@ -34,8 +34,8 @@
         <div class="container beta-relative w3-display-container">
             <div class="pull-left col-sm-6">
                 <a href="{{ route('trang-chu') }}" id="logo">
-                    <img src="public/source/image/manga-logo.png" width="200px" alt="">
-                    <img src="public/source/image/novel-logo.png" width="200px" alt="">
+                    <img src="source/image/manga-logo.png" width="200px" alt="">
+                    <img src="source/image/novel-logo.png" width="200px" alt="">
 
                 </a>
             </div>
@@ -70,7 +70,7 @@
                                                     class="fa fa-times"></i></a>
                                         <div class="media">
                                             <a class="pull-left" href="#"><img
-                                                        src="public/source/image/product/{{ $product['item']['image'] }}"
+                                                        src="source/image/product/{{ $product['item']['image'] }}"
                                                         alt=""></a>
                                             <div class="media-body">
                                                 <span class="cart-item-title">{{ $product['item']['name'] }}</span>

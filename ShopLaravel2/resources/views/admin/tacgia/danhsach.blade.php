@@ -38,7 +38,7 @@
                         <tr class="odd gradeX" align="center">
                             <td>{{ $author->id }}</td>
                             <td><a href="{{ route('danhsachtheotacgia', $author->id) }}">{{ $author->name }}</a></td>
-                            <td><img height="100px" src="public/source/image/product/{{ $author->image }}" alt=""></td>
+                            <td><img height="100px" src="source/image/product/{{ $author->image }}" alt=""></td>
                             <td>{{ $author->yearofbirth }}</td>
                             <td>{{ $author->gender }}</td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a class="confirmation"

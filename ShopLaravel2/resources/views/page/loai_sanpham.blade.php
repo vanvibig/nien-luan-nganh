@@ -52,7 +52,7 @@
                                             @endif
                                             <div class="single-item-header">
                                                 <a href="{{ route('chitietsanpham', $sp->id) }}"><img height="250px"
-                                                                                                      src="public/source/image/product/{{ $sp->image }}"
+                                                                                                      src="source/image/product/{{ $sp->image }}"
                                                                                                       alt=""></a>
                                             </div>
                                             <div class="single-item-body">
@@ -112,7 +112,7 @@
                                             @endif
                                             <div class="single-item-header">
                                                 <a href="{{ route('chitietsanpham', $sp->id) }}"><img height="250px"
-                                                                                                      src="public/source/image/product/{{ $sp->image }}"
+                                                                                                      src="source/image/product/{{ $sp->image }}"
                                                                                                       alt=""></a>
                                             </div>
                                             <div class="single-item-body">

@@ -11,16 +11,16 @@
     <base href="{{ asset('') }}">
 
     <!-- Bootstrap Core CSS -->
-    <link href="public/admin_asset/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="admin_asset/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="public/admin_asset/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="admin_asset/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="public/admin_asset/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="admin_asset/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="public/admin_asset/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="admin_asset/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -67,16 +67,16 @@
 </div>
 
 <!-- jQuery -->
-<script src="public/admin_asset/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="admin_asset/bower_components/jquery/dist/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="public/admin_asset/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="admin_asset/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
-<script src="public/admin_asset/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<script src="admin_asset/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="public/admin_asset/dist/js/sb-admin-2.js"></script>
+<script src="admin_asset/dist/js/sb-admin-2.js"></script>
 
 </body>
 

@@ -39,10 +39,10 @@ class AuthorController extends Controller
         if ($req->hasFile('image')) {
             $file = $req->image;
             $author->image = $file->getClientOriginalName();
-            while(file_exists('public/source/image/product/'.$author->image)){
+            while(file_exists('source/image/product/'.$author->image)){
                 $author->image = str_random(4)."_".$author->image;
             }
-            $file->move('public/source/image/product/', $author->image);
+            $file->move('source/image/product/', $author->image);
         }
         $author->save();
 
@@ -77,11 +77,11 @@ class AuthorController extends Controller
 
         if ($req->hasFile('image')) {
             $file = $req->image;
-            if (file_exists('public/source/image/product/' . $author->image)) {
-                unlink('public/source/image/product/' . $author->image);
+            if (file_exists('source/image/product/' . $author->image)) {
+                unlink('source/image/product/' . $author->image);
             }
             $author->image = $file->getClientOriginalName();
-            $file->move('public/source/image/product/', $author->image);
+            $file->move('source/image/product/', $author->image);
         }
 
         $author->save();
@@ -93,8 +93,8 @@ class AuthorController extends Controller
     {
         $author = Author::find($id);
         try {
-            if (file_exists('public/source/image/product/' . $author->image)) {
-                unlink('public/source/image/product/' . $author->image);
+            if (file_exists('source/image/product/' . $author->image)) {
+                unlink('source/image/product/' . $author->image);
             }
             $author->delete();
         } catch (\Exception $e) {

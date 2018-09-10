@@ -38,7 +38,7 @@
                             <td>{{ $type->id }}</td>
                             <td><a href="{{ route('danhsachtheoloai', $type->id) }}">{{ $type->name }}</a></td>
                             <td>{!! $type->description !!}</td>
-                            <td><img height="100px" src="public/source/image/product/{{ $type->image }}" alt=""></td>
+                            <td><img height="100px" src="source/image/product/{{ $type->image }}" alt=""></td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a class="confirmation"
                                         href="admin/loai/xoa/{{ $type->id }}"> Xoá</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a

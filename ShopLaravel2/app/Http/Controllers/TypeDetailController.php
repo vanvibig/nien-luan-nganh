@@ -44,7 +44,7 @@ class TypeDetailController extends Controller
 //        $type->description = $req->description;
 //
 //        $image = $req->image;
-//        $image->move('public/source/image/product/', $image->getClientOriginalName());
+//        $image->move('source/image/product/', $image->getClientOriginalName());
 //        $type->image = $image->getClientOriginalName();
 //        $type->save();
 //
@@ -79,7 +79,7 @@ class TypeDetailController extends Controller
 ////        $image_old = $type->image;
 ////        $image_new = $req->image;
 ////        if($image_old <> $image_new && $req->hasFile('image')){
-////            $image_new->move('public/source/image/product/', $image_new->getClientOriginalName());
+////            $image_new->move('source/image/product/', $image_new->getClientOriginalName());
 ////            $type->image = $image_new->getClientOriginalName();
 ////        }
 //
@@ -87,18 +87,18 @@ class TypeDetailController extends Controller
 ////            $image = $req->file('image');
 ////        $image = $req->image;
 ////        if($image <> null){
-////            $image->move('public/source/image/product/', $image->getClientOriginalName());
+////            $image->move('source/image/product/', $image->getClientOriginalName());
 ////            $type->image = $image->getClientOriginalName();
 ////        }
 ////        }
 //
 //        if($req->hasFile('image')){
 //            $file = $req->image;
-//            if(file_exists('public/source/image/product/'.$type->image)){
-//                unlink('public/source/image/product/'.$type->image);
+//            if(file_exists('source/image/product/'.$type->image)){
+//                unlink('source/image/product/'.$type->image);
 //            }
 //            $type->image = $file->getClientOriginalName();
-//            $file->move('public/source/image/product/', $type->image);
+//            $file->move('source/image/product/', $type->image);
 //        }
 //
 //        $type->save();
@@ -109,8 +109,8 @@ class TypeDetailController extends Controller
 //    public function getXoa($id){
 //        $type = Type_product::find($id);
 //        try {
-//            if(file_exists('public/source/image/product/'.$type->image)){
-//                unlink('public/source/image/product/'.$type->image);
+//            if(file_exists('source/image/product/'.$type->image)){
+//                unlink('source/image/product/'.$type->image);
 //            }
 //            $type->delete();
 //        } catch (\Exception $e) {

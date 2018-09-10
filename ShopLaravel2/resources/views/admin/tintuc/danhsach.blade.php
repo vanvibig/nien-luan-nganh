@@ -40,7 +40,7 @@
                             <td>{{ $new->title }}</td>
                             <td>{!! $new->content !!}</td>
                             <td>
-                                <img height="80px" width="80px" src="public/source/image/product/{{ $new->image }}"
+                                <img height="80px" width="80px" src="source/image/product/{{ $new->image }}"
                                      alt="">
                             </td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a class="confirmation"

@@ -71,10 +71,10 @@ class ProductController extends Controller
         if ($req->hasFile('image')) {
             $file = $req->image;
             $product->image = $file->getClientOriginalName();
-            while(file_exists('public/source/image/product/'.$product->image)){
+            while(file_exists('source/image/product/'.$product->image)){
                 $product->image = str_random(4)."_".$product->image;
             }
-            $file->move('public/source/image/product/', $product->image);
+            $file->move('source/image/product/', $product->image);
         }
 
         $product->unit = $req->unit;
@@ -138,11 +138,11 @@ class ProductController extends Controller
 
         if ($req->hasFile('image')) {
             $file = $req->image;
-            if (file_exists('public/source/image/product/' . $product->image)) {
-                unlink('public/source/image/product/' . $product->image);
+            if (file_exists('source/image/product/' . $product->image)) {
+                unlink('source/image/product/' . $product->image);
             }
             $product->image = $file->getClientOriginalName();
-            $file->move('public/source/image/product/', $product->image);
+            $file->move('source/image/product/', $product->image);
         }
 
         $product->unit = $req->unit;
@@ -160,8 +160,8 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         try {
-            if (file_exists('public/source/image/product/' . $product->image)) {
-                unlink('public/source/image/product/' . $product->image);
+            if (file_exists('source/image/product/' . $product->image)) {
+                unlink('source/image/product/' . $product->image);
             }
             $product->type_detail()->detach();
             $product->author()->detach();

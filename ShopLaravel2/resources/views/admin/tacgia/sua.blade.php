@@ -52,7 +52,7 @@
                                 <tr>
                                     <td style="margin-right: 10px"><label>Hình ảnh</label></td>
                                     <td><img style="margin-right: 5px" height="100px"
-                                             src="public/source/image/product/{{ $author->image }}" alt=""></td>
+                                             src="source/image/product/{{ $author->image }}" alt=""></td>
                                     <td><input class="form-control" type="file" name="image" id="image"></td>
                                 </tr>
                             </table>

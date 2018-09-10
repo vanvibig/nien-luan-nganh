@@ -17,9 +17,9 @@
                                      data-oheight="undefined">
                                     <div class="tp-bgimg defaultimg" data-lazyload="undefined" data-bgfit="cover"
                                          data-bgposition="center center" data-bgrepeat="no-repeat"
-                                         data-lazydone="undefined" src="public/source/image/slide/{{ $sl->image }}"
-                                         data-src="public/source/image/slide/{{ $sl->image }}"
-                                         style="background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-image: url('public/source/image/slide/{{ $sl->image }}'); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 1; visibility: inherit;">
+                                         data-lazydone="undefined" src="source/image/slide/{{ $sl->image }}"
+                                         data-src="source/image/slide/{{ $sl->image }}"
+                                         style="background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-image: url('source/image/slide/{{ $sl->image }}'); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 1; visibility: inherit;">
                                     </div>
                                 </div>
                             </li>
@@ -61,7 +61,7 @@
                                     <a style="margin: 12px" class="pull-left"
                                        href="{{ route('chitietsanpham', $spv->id) }}">
                                         <img class="w3-image" width="100%"
-                                             src="public/source/image/product/{{ $spv->image }}"
+                                             src="source/image/product/{{ $spv->image }}"
                                              alt="">
                                     </a>
                                     <div class="media-body w3-bar">
@@ -125,7 +125,7 @@
                                                             <div class="single-item-header">
                                                                 <a href="{{ route('chitietsanpham', $new->id) }}"><img
                                                                             class=".img-fluid" style="height: 220px"
-                                                                            src="public/source/image/product/{{ $new->image }}"
+                                                                            src="source/image/product/{{ $new->image }}"
                                                                             alt=""></a>
                                                             </div>
                                                         </div>
@@ -209,7 +209,7 @@
                                                             <div class="single-item-header">
                                                                 <a href="{{ route('chitietsanpham', $spkm->id) }}"><img
                                                                             class=".img-fluid" style="height: 220px"
-                                                                            src="public/source/image/product/{{ $spkm->image }}"
+                                                                            src="source/image/product/{{ $spkm->image }}"
                                                                             alt=""></a>
                                                             </div>
                                                         </div>

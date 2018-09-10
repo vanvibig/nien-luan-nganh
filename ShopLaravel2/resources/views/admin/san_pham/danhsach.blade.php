@@ -47,7 +47,7 @@
                                 <br>
                                 <div class="col-sm-12"><img class="img-fluid img-responsive center-block"
                                                             style="max-width:60%"
-                                                            src="public/source/image/product/{{ $product->image }}"
+                                                            src="source/image/product/{{ $product->image }}"
                                                             alt=""></div>
                                 <div class="clearfix clear"></div>
                                 <br>

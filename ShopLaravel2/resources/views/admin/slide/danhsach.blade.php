@@ -36,7 +36,7 @@
                         <tr class="odd gradeX" align="center">
                             <td>{{ $slide->id }}</td>
                             <td>{{ $slide->link }}</td>
-                            <td><img src="public/source/image/slide/{{ $slide->image  }}" style="height: 100px;"></td>
+                            <td><img src="source/image/slide/{{ $slide->image  }}" style="height: 100px;"></td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a class="confirmation" href="admin/slide/xoa/{{ $slide->id }}"> Delete</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/slide/sua/{{ $slide->id }}">Edit</a></td>
                         </tr>

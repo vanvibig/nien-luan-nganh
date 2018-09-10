@@ -35,10 +35,10 @@ class SlideController extends Controller
         if ($req->hasFile('image')) {
             $file = $req->image;
             $slide->image = $file->getClientOriginalName();
-            while(file_exists('public/source/image/slide/'.$slide->image)){
+            while(file_exists('source/image/slide/'.$slide->image)){
                 $slide->image = str_random(4)."_".$slide->image;
             }
-            $file->move('public/source/image/slide/', $slide->image);
+            $file->move('source/image/slide/', $slide->image);
         }
         $slide->save();
 
@@ -65,11 +65,11 @@ class SlideController extends Controller
         if ($req->hasFile('image')) {
             $file = $req->image;
             $slide->image = $file->getClientOriginalName();
-            if(file_exists('public/source/image/slide/'.$slide->image)){
-                unlink('public/source/image/slide/' . $slide->image);
+            if(file_exists('source/image/slide/'.$slide->image)){
+                unlink('source/image/slide/' . $slide->image);
 //                $slide->image = str_random(4)."_".$slide->image;
             }
-            $file->move('public/source/image/slide/', $slide->image);
+            $file->move('source/image/slide/', $slide->image);
         }
 
         $slide->save();
@@ -81,8 +81,8 @@ class SlideController extends Controller
     {
         $slide = Slide::find($id);
         try {
-            if (file_exists('public/source/image/slide/' . $slide->image)) {
-                unlink('public/source/image/slide/' . $slide->image);
+            if (file_exists('source/image/slide/' . $slide->image)) {
+                unlink('source/image/slide/' . $slide->image);
             }
             $slide->delete();
         } catch (\Exception $e) {

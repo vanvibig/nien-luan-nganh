@@ -39,7 +39,7 @@
                             <table>
                                 <tr>
                                     <td><img style="margin-right: 5px" height="100px"
-                                             src="public/source/image/product/{{ $type->image }}" alt=""></td>
+                                             src="source/image/product/{{ $type->image }}" alt=""></td>
                                     <td><input class="form-control" type="file" name="image" id="image"></td>
                                 </tr>
                             </table>

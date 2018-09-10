@@ -38,7 +38,7 @@
                             <td>{{ $type->id }}</td>
                             <td>{{ $type->name }}</td>
                             <td>{{ $type->description }}</td>
-                            <td><img height="100px" src="public/source/image/product/{{ $type->image }}" alt=""></td>
+                            <td><img height="100px" src="source/image/product/{{ $type->image }}" alt=""></td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a
                                         href="admin/loai/xoa/{{ $type->id }}"> Xoá</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a
@@ -88,7 +88,7 @@
                             <td>{{ $product->id }}</td>
                             <td>{{ $product->name }}
                                 <img height="100px" width="100px"
-                                     src="public/source/image/product/{{ $product->image }}"
+                                     src="source/image/product/{{ $product->image }}"
                                      alt="">
                             </td>
                             <td>

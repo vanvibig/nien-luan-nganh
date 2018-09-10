@@ -19,7 +19,7 @@
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="col-sm-4">
-                            <img src="public/source/image/product/{{ $new->image }}" alt="">
+                            <img src="source/image/product/{{ $new->image }}" alt="">
                         </div>
                         <div class="col-sm-8">
                             <div class="single-item-body">
@@ -64,7 +64,7 @@
                                     <a style="margin: 12px" class="pull-left"
                                        href="{{ route('chitietsanpham', $spm->id) }}">
                                         <img class="w3-image" width="100%"
-                                             src="public/source/image/product/{{ $spm->image }}"
+                                             src="source/image/product/{{ $spm->image }}"
                                              alt="">
                                     </a>
                                     <div class="media-body w3-bar">

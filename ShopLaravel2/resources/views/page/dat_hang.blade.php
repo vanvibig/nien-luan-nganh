@@ -109,7 +109,7 @@
                                                         <a style="margin: 12px" class="pull-left"
                                                            href="{{ route('chitietsanpham', $product['item']['id']) }}">
                                                             <img class="w3-image" width="100%"
-                                                                 src="public/source/image/product/{{ $product['item']['image'] }}"
+                                                                 src="source/image/product/{{ $product['item']['image'] }}"
                                                                  alt="">
                                                         </a>
                                                         <div class="media-body w3-bar">

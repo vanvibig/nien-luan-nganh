@@ -22,7 +22,7 @@
                     @endif
                     <div class="row aside-menu">
                         <div class="col-sm-4">
-                            <img src="public/source/image/product/{{ $sanpham->image }}" alt="">
+                            <img src="source/image/product/{{ $sanpham->image }}" alt="">
                             <div>
                                 <lable>Thể loại:</lable>
                                 <div class="w3-bar">
@@ -114,7 +114,7 @@
                                                                         <a href="{{ route('chitietsanpham', $sptt->id) }}"><img
                                                                                     class=".img-fluid"
                                                                                     style="height: 220px"
-                                                                                    src="public/source/image/product/{{ $sptt->image }}"
+                                                                                    src="source/image/product/{{ $sptt->image }}"
                                                                                     alt=""></a>
                                                                     </div>
                                                                 </div>
@@ -189,7 +189,7 @@
                                     <a style="margin: 12px" class="pull-left"
                                        href="{{ route('chitietsanpham', $spv->id) }}">
                                         <img class="w3-image" width="100%"
-                                             src="public/source/image/product/{{ $spv->image }}"
+                                             src="source/image/product/{{ $spv->image }}"
                                              alt="">
                                     </a>
                                     <div class="media-body w3-bar">

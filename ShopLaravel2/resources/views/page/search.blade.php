@@ -42,7 +42,7 @@
                                     <a style="margin: 12px" class="pull-left"
                                        href="{{ route('chitietsanpham', $spv->id) }}">
                                         <img class="w3-image" width="100%"
-                                             src="public/source/image/product/{{ $spv->image }}"
+                                             src="source/image/product/{{ $spv->image }}"
                                              alt="">
                                     </a>
                                     <div class="media-body w3-bar">
@@ -108,7 +108,7 @@
                                                             <div class="single-item-header">
                                                                 <a href="{{ route('chitietsanpham', $s->id) }}"><img
                                                                             class=".img-fluid" style="height: 220px"
-                                                                            src="public/source/image/product/{{ $s->image }}"
+                                                                            src="source/image/product/{{ $s->image }}"
                                                                             alt=""></a>
                                                             </div>
                                                         </div>

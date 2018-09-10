@@ -38,10 +38,10 @@ class NewsController extends Controller
         if ($req->hasFile('image')) {
             $file = $req->image;
             $news->image = $file->getClientOriginalName();
-            while(file_exists('public/source/image/product/'.$news->image)){
+            while(file_exists('source/image/product/'.$news->image)){
                 $news->image = str_random(4)."_".$news->image;
             }
-            $file->move('public/source/image/product/', $news->image);
+            $file->move('source/image/product/', $news->image);
         }
         $news->save();
 
@@ -72,11 +72,11 @@ class NewsController extends Controller
 
         if($req->hasFile('image')){
             $file = $req->image;
-            if(file_exists('public/source/image/product/'.$new->image)){
-                unlink('public/source/image/product/'.$new->image);
+            if(file_exists('source/image/product/'.$new->image)){
+                unlink('source/image/product/'.$new->image);
             }
             $new->image = $file->getClientOriginalName();
-            $file->move('public/source/image/product/', $new->image);
+            $file->move('source/image/product/', $new->image);
         }
         $new->save();
 
@@ -87,8 +87,8 @@ class NewsController extends Controller
     public function getXoa($id){
         $new = News::find($id);
         try {
-            if(file_exists('public/source/image/product/'.$new->image)){
-                unlink('public/source/image/product/'.$new->image);
+            if(file_exists('source/image/product/'.$new->image)){
+                unlink('source/image/product/'.$new->image);
             }
             $new->delete();
         } catch (\Exception $e) {
