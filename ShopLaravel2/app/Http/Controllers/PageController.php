@@ -53,7 +53,13 @@ class PageController extends Controller
 
 //        return view('page.trangchu', compact('slide', 'new_product'));
 
-        $sanpham_khuyenmai = Product::where('promotion_price', '<>', 0)->paginate(6);
+//        $sanpham_khuyenmai = Product::where('promotion_price', '<>', 0)->paginate(6);
+
+        $sanpham_khuyenmai = Product::whereHas('promotion', function ($query) {
+            $query->where('status', 1);
+        })->paginate(6);
+
+//        dd($sanpham_khuyenmai);
 
         $news = News::all();
 

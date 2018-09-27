@@ -61,7 +61,7 @@
                                     <a style="margin: 12px" class="pull-left"
                                        href="{{ route('chitietsanpham', $spv->id) }}">
                                         <img class="w3-image" width="100%"
-                                             src="source/image/product/{{ $spv->image }}"
+                                             src="{{ asset('source/image/product/' . $spv->image) }}"
                                              alt="">
                                     </a>
                                     <div class="media-body w3-bar">
