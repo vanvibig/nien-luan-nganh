@@ -80,15 +80,19 @@
                                             <lable>Lượt xem:</lable>
                                             {{ $spv->view_count }}
                                         </div>
-                                        @if($spv->promotion_price == 0  )
+                                        @if(count($spv->promotion) == 0 || $spv->promotion[0]->status == 0)
                                             <span>{{ number_format($spv->unit_price) }} đ</span>
-                                        @else
-                                            <span class="flash-del">{{ number_format($spv->unit_price) }}
-                                                đ</span>
-                                            <br>
-                                            <span class="flash-sale">{{ number_format($spv->promotion_price) }}
-                                                đ</span>
                                         @endif
+                                        @foreach($spv->promotion as $prom)
+                                            @if($prom->status == 1 && Carbon\Carbon::today() >= $prom->start && Carbon\Carbon::today() <= $prom->end)
+                                                <span class="flash-del">{{ number_format($spv->unit_price) }}
+                                                    đ</span>
+                                                <span class="flash-sale">&nbsp;-{{ $prom->discount}}
+                                                    %</span>
+                                                <br>
+                                                <span class="flash-sale">&nbsp;{{ number_format($spv->unit_price*(1 - $prom->discount/100))}}</span>
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
                                 {{--</a>--}}
@@ -116,7 +120,7 @@
                                                     <div class="row w3-display-container">
                                                         <div class="col-sm-8">
                                                             @foreach($new->promotion as $prom)
-                                                                @if($prom != null)
+                                                                @if($prom->status == 1 && Carbon\Carbon::today() >= $prom->start && Carbon\Carbon::today() <= $prom->end)
                                                                     <div class="ribbon-wrapper">
                                                                         <div class="ribbon sale">Sale</div>
                                                                     </div>
@@ -157,10 +161,18 @@
                                                             {{ $new->view_count }}
                                                         </div>
                                                         <p class="single-item-price">
-                                                            <span>{{ number_format($new->unit_price) }} đ</span>
+                                                            @if(count($new->promotion) == 0 || $new->promotion[0]->status == 0)
+                                                                <span>{{ number_format($new->unit_price) }} đ</span>
+                                                            @endif
                                                             @foreach($new->promotion as $prom)
-                                                                @if($prom)
-                                                                    <span class="flash-sale">&nbsp;-{{ $prom->discount}}%</span>
+                                                                @if($prom->status == 1 && Carbon\Carbon::today() >= $prom->start && Carbon\Carbon::today() <= $prom->end)
+                                                                    <span class="flash-del">{{ number_format($new->unit_price) }}
+                                                                        đ</span>
+                                                                    <span class="flash-sale">&nbsp;-{{ $prom->discount}}
+                                                                        %</span>
+                                                                    <br>
+                                                                    <span class="flash-sale">&nbsp;{{ number_format($new->unit_price*(1 - $prom->discount/100))}}
+                                                                        đ</span>
                                                                 @endif
                                                             @endforeach
                                                         </p>
@@ -196,75 +208,91 @@
                             <div class="row">
                                 <ul class="container-fluid" style="list-style: none;">
                                     @foreach($sanpham_khuyenmai as $spkm)
-                                        <li class="col-sm-4" style="min-height: 415px;">
-                                            <div style="margin: 12px" class="">
-                                                <div class="single-item">
-                                                    <div class="row">
-                                                        <div class="col-sm-8">
-                                                            @if($spkm->promotion_price != 0)
-                                                                <div class="ribbon-wrapper">
-                                                                    <div class="ribbon sale">Sale</div>
+                                        @if(count($spkm->promotion) != 0)
+                                            @if($spkm->promotion[0]->status == 1)
+                                                <li class="col-sm-4" style="min-height: 415px;">
+                                                    <div style="margin: 12px" class="">
+                                                        <div class="single-item">
+                                                            <div class="row">
+                                                                <div class="col-sm-8">
+                                                                    @foreach($spkm->promotion as $prom)
+                                                                        @if($prom->status == 1 && Carbon\Carbon::today() >= $prom->start && Carbon\Carbon::today() <= $prom->end)
+                                                                            <div class="ribbon-wrapper">
+                                                                                <div class="ribbon sale">Sale</div>
+                                                                            </div>
+                                                                        @endif
+                                                                    @endforeach
+                                                                    <div class="single-item-header">
+                                                                        <a href="{{ route('chitietsanpham', $spkm->id) }}"><img
+                                                                                    class=".img-fluid"
+                                                                                    style="height: 220px"
+                                                                                    src="source/image/product/{{ $spkm->image }}"
+                                                                                    alt=""></a>
+                                                                    </div>
                                                                 </div>
-                                                            @endif
-                                                            <div class="single-item-header">
-                                                                <a href="{{ route('chitietsanpham', $spkm->id) }}"><img
-                                                                            class=".img-fluid" style="height: 220px"
-                                                                            src="source/image/product/{{ $spkm->image }}"
-                                                                            alt=""></a>
+                                                                <div class="col-sm-4">
+                                                                    {{--<span>Thể loại: </span>--}}
+                                                                    @foreach($spkm->type_detail as $type)
+                                                                        <a class="label w3-medium"
+                                                                           style="font-size: 13px!important;"
+                                                                           href="{{ route('loaisanphamchitiet', $type->id) }}">{{ $type->name }}</a>
+                                                                        <div class="clear clearfix row"
+                                                                             style="margin: 2px auto"></div>
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                            <div class="single-item-body">
+                                                                <p class="single-item-title"><a
+                                                                            href="{{ route('chitietsanpham', $spkm->id) }}">{{ $spkm->name }}</a>
+                                                                </p>
+                                                                <div class="w3-display-container">
+                                                                    @foreach($spkm->author as $author)
+                                                                        <a class="label w3-medium"
+                                                                           style="font-size: 13px!important;"
+                                                                           href="{{ route('sanphamtheotacgia', $author->id) }}">{{ $author->name }}</a>
+                                                                        <div class="clear clearfix row"
+                                                                             style="margin: 2px auto"></div>
+                                                                    @endforeach
+                                                                </div>
+                                                                <div>
+                                                                    <lable>Lượt xem:</lable>
+                                                                    {{ $spkm->view_count }}
+                                                                </div>
+                                                                <p class="single-item-price">
+                                                                    @if(count($spkm->promotion) == 0 || $spkm->promotion[0]->status == 0)
+                                                                        <span>{{ number_format($spkm->unit_price) }}
+                                                                            đ</span>
+                                                                    @endif
+                                                                    @foreach($spkm->promotion as $prom)
+                                                                        @if($prom->status == 1 && Carbon\Carbon::today() >= $prom->start && Carbon\Carbon::today() <= $prom->end)
+                                                                            <span class="flash-del">{{ number_format($spkm->unit_price) }}
+                                                                                đ</span>
+                                                                            <span class="flash-sale">&nbsp;-{{ $prom->discount}}
+                                                                                %</span>
+                                                                            <br>
+                                                                            <span class="flash-sale">&nbsp;{{ number_format($spkm->unit_price*(1 - $prom->discount/100))}}
+                                                                                đ</span>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </p>
+                                                            </div>
+                                                            <div class="single-item-caption">
+                                                                <a class="add-to-cart pull-left"
+                                                                   href="{{ route('themgiohang', $spkm->id) }}"><i
+                                                                            class="fa fa-shopping-cart"></i></a>
+                                                                <a class="beta-btn primary"
+                                                                   href="{{ route('chitietsanpham', $spkm->id) }}">Chi
+                                                                    tiết
+                                                                    <i
+                                                                            class="fa fa-chevron-right"></i></a>
+                                                                <div class="clearfix"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-4">
-                                                            {{--<span>Thể loại: </span>--}}
-                                                            @foreach($spkm->type_detail as $type)
-                                                                <a class="label w3-medium"
-                                                                   style="font-size: 13px!important;"
-                                                                   href="{{ route('loaisanphamchitiet', $type->id) }}">{{ $type->name }}</a>
-                                                                <div class="clear clearfix row"
-                                                                     style="margin: 2px auto"></div>
-                                                            @endforeach
-                                                        </div>
                                                     </div>
-                                                    <div class="single-item-body">
-                                                        <p class="single-item-title"><a
-                                                                    href="{{ route('chitietsanpham', $spkm->id) }}">{{ $spkm->name }}</a>
-                                                        </p>
-                                                        <div class="w3-display-container">
-                                                            @foreach($spkm->author as $author)
-                                                                <a class="label w3-medium"
-                                                                   style="font-size: 13px!important;"
-                                                                   href="{{ route('sanphamtheotacgia', $author->id) }}">{{ $author->name }}</a>
-                                                                <div class="clear clearfix row"
-                                                                     style="margin: 2px auto"></div>
-                                                            @endforeach
-                                                        </div>
-                                                        <div>
-                                                            <lable>Lượt xem:</lable>
-                                                            {{ $spkm->view_count }}
-                                                        </div>
-                                                        <p class="single-item-price">
-                                                            @if($spkm->promotion_price == 0)
-                                                                <span>{{ number_format($spkm->unit_price) }} đ</span>
-                                                            @else
-                                                                <span class="flash-del">{{ number_format($spkm->unit_price) }}
-                                                                    đ</span>
-                                                                <span class="flash-sale">{{ number_format($spkm->promotion_price) }}
-                                                                    đ</span>
-                                                            @endif
-                                                        </p>
-                                                    </div>
-                                                    <div class="single-item-caption">
-                                                        <a class="add-to-cart pull-left"
-                                                           href="{{ route('themgiohang', $spkm->id) }}"><i
-                                                                    class="fa fa-shopping-cart"></i></a>
-                                                        <a class="beta-btn primary"
-                                                           href="{{ route('chitietsanpham', $spkm->id) }}">Chi tiết <i
-                                                                    class="fa fa-chevron-right"></i></a>
-                                                        <div class="clearfix"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <div class="w-100"></div>
+                                                </li>
+                                                <div class="w-100"></div>
+                                            @endif
+                                        @endif
                                     @endforeach
                                 </ul>
                             </div>
