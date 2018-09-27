@@ -13,6 +13,7 @@ use App\Slide;
 use App\Type_detail;
 use App\Type_product;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Session;
 use Hash;
@@ -86,11 +87,7 @@ class PageController extends Controller
 
     public function getSanPhamMoi()
     {
-//        $sp_moi = Product::where('new', 1)
-//            ->orderBy('created_at', 'desc')
-//            ->limit(10)
-//            ->get();
-        $sp_moi = Product::orderBy('created_at', 'desc')->paginate(9);
+        $sp_moi = Product::orderBy('created_at', 'desc')->paginate(6);
 
         $loai_chitiet = Type_detail::all();
 
@@ -117,28 +114,28 @@ class PageController extends Controller
 
     public function getSanPhamXemNhieu()
     {
-
-        $top5 = Product::orderByDesc('view_count')->limit(5)->get();
-
         $loai_chitiet = Type_detail::all();
 
-        $sp_theoview = Product::orderByDesc('view_count')->paginate(9);
+        $sp_theoview = Product::orderByDesc('view_count')->paginate(6);
 
-        return view('page.sanphamxemnhieu', compact('top5', 'loai_chitiet', 'sp_theoview'));
+        return view('page.sanphamxemnhieu', compact('loai_chitiet', 'sp_theoview'));
     }
 
     public function getSanPhamKhuyenMai()
     {
-
-        $top5 = Product::orderByDesc('view_count')->limit(5)->get();
-
         $loai_chitiet = Type_detail::all();
 
-        $sp_khuyenmai = Product::where('promotion_price', '>', 0)
-            ->where('unit_price', '>', 'promotion_price')
-            ->paginate(9);
+//        $sp_khuyenmai = Product::where('promotion_price', '>', 0)
+//            ->where('unit_price', '>', 'promotion_price')
+//            ->paginate(6);
 
-        return view('page.sanphamkhuyenmai', compact('top5', 'loai_chitiet', 'sp_khuyenmai'));
+        $sp_khuyenmai = Product::whereHas('promotion', function ($query) {
+            $query->where('status', 1)
+                    ->where('end', '>=',  Carbon::today()->format('Y/m/d'))
+                    ->orderByDesc('discount');
+        })->paginate(6);
+
+        return view('page.sanphamkhuyenmai', compact('loai_chitiet', 'sp_khuyenmai'));
     }
 
     /**
@@ -167,11 +164,28 @@ class PageController extends Controller
 
     public function getLoaiSpChiTiet($type)
     {
-        $sp_theoloai = Type_detail::find($type)->product()->paginate(6);
+        $sp_theoloai_list = Type_detail::find($type)->product();
+        $sp_theoloai = $sp_theoloai_list->paginate(6);
 
-        $loai_khac = Type_detail::where('id', '<>', $type)
-            ->limit(2)
+        $sp_theoloai_list_id = $sp_theoloai_list->pluck('id')->toArray();
+
+//        $loai_khac = Type_detail::where('id', '<>', $type)
+//            ->limit(2)
+//            ->get();
+//        dd($loai_khac);
+
+//        $sanpham_khuyenmai = Product::whereHas('promotion', function ($query) {
+//            $query->where('status', 1);
+//        })->paginate(6);
+
+        $loai_khac = Product::whereHas('type_detail', function ($query) use ($type) {
+            $query->where('id', '<>', $type);
+        })
+            ->whereNotIn('id', $sp_theoloai_list_id)
+            ->limit(6)
+            ->orderByDesc('view_count')
             ->get();
+
 //        dd($loai_khac);
 
         $loai_chitiet = Type_detail::all();
@@ -187,8 +201,9 @@ class PageController extends Controller
      */
     public function getChiTiet(Request $req)
     {
+        $id_loai = $req->id;
         $sanpham = Product::where('id', $req->id)->first();
-        $cung_loai = $sanpham->type_detail()->get();
+//        $cung_loai = $sanpham->type_detail()->get();
 
         $sp_moi = Product::orderBy('updated_at', 'desc')->limit(10)->get();
 
@@ -200,6 +215,12 @@ class PageController extends Controller
         // đếm lượt view
 
         $sp_theoview = Product::limit(10)->orderByDesc('view_count')->get();
+
+        $cung_loai = Product::where('id', '<>', $sanpham->id)
+            ->limit(6)
+            ->orderByDesc('view_count')
+            ->get();
+
         Event::fire('products.view', $sanpham);
 
         return view('page.chitiet_sanpham', compact('sanpham', 'sp_tuongtu', 'sp_moi', 'cung_loai', 'sp_theoview'));

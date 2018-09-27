@@ -26,6 +26,7 @@
                     <tr align="center">
                         <th class="text-center">ID</th>
                         <th class="text-center">Tên khuyến mãi</th>
+                        <th class="text-center">Active</th>
                         <th class="text-center">Discount</th>
                         <th class="text-center">Sản phẩm</th>
                         {{--<th class="text-center">Xoá</th>--}}
@@ -37,6 +38,13 @@
                         <tr class="odd gradeX" align="center">
                             <td>{{ $promotion->id }}</td>
                             <td>{{ $promotion->name }}</td>
+                            <td>
+                                @if($promotion->status == 1)
+                                    {{ "Active" }}
+                                @else
+                                    {{ "Deactive" }}
+                                @endif
+                            </td>
                             <td>{{ $promotion->discount }}</td>
                             <td align="left" class="row">
                                 @foreach($promotion->product as $product)
