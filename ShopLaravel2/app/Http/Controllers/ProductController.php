@@ -71,8 +71,8 @@ class ProductController extends Controller
         if ($req->hasFile('image')) {
             $file = $req->image;
             $product->image = $file->getClientOriginalName();
-            while(file_exists('source/image/product/'.$product->image)){
-                $product->image = str_random(4)."_".$product->image;
+            while (file_exists('source/image/product/' . $product->image)) {
+                $product->image = str_random(4) . "_" . $product->image;
             }
             $file->move('source/image/product/', $product->image);
         }
@@ -159,16 +159,26 @@ class ProductController extends Controller
     public function getXoa($id)
     {
         $product = Product::find($id);
-        try {
-            if (file_exists('source/image/product/' . $product->image)) {
-                unlink('source/image/product/' . $product->image);
+        $thongbao = '';
+        if (
+            count($product->bill_detail()->get()) == 0 &&
+            count($product->type_detail()->get()) == 0 &&
+            count($product->promotion()->get()) == 0
+        ) {
+            try {
+                if (file_exists('source/image/product/' . $product->image)) {
+                    unlink('source/image/product/' . $product->image);
+                }
+                $product->type_detail()->detach();
+                $product->author()->detach();
+                $product->delete();
+                $thongbao = 'Bạn đã xóa thành công';
+            } catch (\Exception $e) {
+                echo "Error: " . $e;
             }
-            $product->type_detail()->detach();
-            $product->author()->detach();
-            $product->delete();
-        } catch (\Exception $e) {
-            echo "Error: " . $e;
+        } else {
+            $thongbao = 'Bạn không được phép xóa vì có 1 đối tượng khác đang sử dụng thông tin này';
         }
-        return redirect('admin/sanpham/danhsach')->with('thongbao', 'Xóa sản phẩm thành công');
+        return redirect('admin/sanpham/danhsach')->with('thongbao', $thongbao);
     }
 }

@@ -604,35 +604,35 @@ ALTER TABLE `users`
 -- Constraints for table `bills`
 --
 ALTER TABLE `bills`
-  ADD CONSTRAINT `fk_bill_to_customer` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_bill_to_customer` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 --
 -- Constraints for table `bill_details`
 --
 ALTER TABLE `bill_details`
-  ADD CONSTRAINT `fk_billdetail_to_bill` FOREIGN KEY (`id_bill`) REFERENCES `bills` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_billdetail_to_product` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_billdetail_to_bill` FOREIGN KEY (`id_bill`) REFERENCES `bills` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT,
+  ADD CONSTRAINT `fk_billdetail_to_product` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 --
 -- Constraints for table `product_author`
 --
 ALTER TABLE `product_author`
-  ADD CONSTRAINT `fk_to_author` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_to_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_to_author` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT,
+  ADD CONSTRAINT `fk_to_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 --
 -- Constraints for table `product_promotion`
 --
 ALTER TABLE `product_promotion`
-  ADD CONSTRAINT `fk_to_khuyenmai` FOREIGN KEY (`km_id`) REFERENCES `promotions` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_to_sanpham` FOREIGN KEY (`sp_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_to_khuyenmai` FOREIGN KEY (`km_id`) REFERENCES `promotions` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT,
+  ADD CONSTRAINT `fk_to_sanpham` FOREIGN KEY (`sp_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 --
 -- Constraints for table `product_type_detail`
 --
 ALTER TABLE `product_type_detail`
-  ADD CONSTRAINT `fk_to_sanpham2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_to_theloai` FOREIGN KEY (`type_id`) REFERENCES `type_details` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_to_sanpham2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT,
+  ADD CONSTRAINT `fk_to_theloai` FOREIGN KEY (`type_id`) REFERENCES `type_details` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

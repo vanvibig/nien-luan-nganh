@@ -39,8 +39,8 @@ class AuthorController extends Controller
         if ($req->hasFile('image')) {
             $file = $req->image;
             $author->image = $file->getClientOriginalName();
-            while(file_exists('source/image/product/'.$author->image)){
-                $author->image = str_random(4)."_".$author->image;
+            while (file_exists('source/image/product/' . $author->image)) {
+                $author->image = str_random(4) . "_" . $author->image;
             }
             $file->move('source/image/product/', $author->image);
         }
@@ -92,15 +92,21 @@ class AuthorController extends Controller
     public function getXoa($id)
     {
         $author = Author::find($id);
-        try {
-            if (file_exists('source/image/product/' . $author->image)) {
-                unlink('source/image/product/' . $author->image);
+        $thongbao = '';
+        if (count($author->product()->get()) == 0) {
+            try {
+                if (file_exists('source/image/product/' . $author->image)) {
+                    unlink('source/image/product/' . $author->image);
+                }
+                $author->delete();
+                $thongbao = 'Bạn đã xóa thành công';
+            } catch (\Exception $e) {
+                echo "Error: " . $e;
             }
-            $author->delete();
-        } catch (\Exception $e) {
-            echo "Error: " . $e;
+        } else {
+            $thongbao = 'Bạn không được phép xóa vì có 1 đối tượng khác đang sử dụng thông tin này';
         }
 
-        return redirect('admin/tacgia/danhsach')->with('thongbao', 'Xóa thành công');
+        return redirect('admin/tacgia/danhsach')->with('thongbao', $thongbao);
     }
 }

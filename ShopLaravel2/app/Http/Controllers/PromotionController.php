@@ -72,15 +72,22 @@ class PromotionController extends Controller
         return redirect('admin/khuyenmai/sua/' . $id)->with('thongbao', 'Sửa thành công');
     }
 
-    public function getXoa($id){
+    public function getXoa($id)
+    {
         $promotion = Promotion::find($id);
-        try {
-            $promotion->delete();
-        } catch (\Exception $e) {
-            echo "Error: " . $e;
+        $thongbao = '';
+        if (count($promotion->product()->get()) == 0) {
+            try {
+                $promotion->delete();
+                $thongbao = 'Bạn đã xóa thành công';
+            } catch (\Exception $e) {
+                echo "Error: " . $e;
+            }
+        } else {
+            $thongbao = 'Bạn không được phép xóa vì có 1 đối tượng khác đang sử dụng thông tin này';
         }
 
-        return redirect('admin/khuyenmai/danhsach')->with('thongbao', 'Bạn đã xóa thành công');
+        return redirect('admin/khuyenmai/danhsach')->with('thongbao', $thongbao);
     }
 
 }

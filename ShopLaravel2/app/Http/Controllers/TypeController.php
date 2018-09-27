@@ -38,8 +38,8 @@ class TypeController extends Controller
         if ($req->hasFile('image')) {
             $file = $req->image;
             $type->image = $file->getClientOriginalName();
-            while(file_exists('source/image/product/'.$type->image)){
-                $type->image = str_random(4)."_".$type->image;
+            while (file_exists('source/image/product/' . $type->image)) {
+                $type->image = str_random(4) . "_" . $type->image;
             }
             $file->move('source/image/product/', $type->image);
         }
@@ -95,8 +95,8 @@ class TypeController extends Controller
         if ($req->hasFile('image')) {
             $file = $req->image;
             $type->image = $file->getClientOriginalName();
-            if(file_exists('source/image/product/'.$type->image)){
-                $type->image = str_random(4)."_".$type->image;
+            if (file_exists('source/image/product/' . $type->image)) {
+                $type->image = str_random(4) . "_" . $type->image;
             }
             $file->move('source/image/product/', $type->image);
         }
@@ -106,18 +106,26 @@ class TypeController extends Controller
         return redirect('admin/loai/sua/' . $id)->with('thongbao', 'Sửa thành công');
     }
 
-    public function getXoa($id){
+    public function getXoa($id)
+    {
         $type = Type_detail::find($id);
-        try {
-            if(file_exists('source/image/product/'.$type->image)){
-                unlink('source/image/product/'.$type->image);
+        $thongbao = '';
+
+        if (count($type->product()->get()) == 0) {
+            try {
+                if (file_exists('source/image/product/' . $type->image)) {
+                    unlink('source/image/product/' . $type->image);
+                }
+                $type->delete();
+                $thongbao = 'Bạn đã xóa thành công';
+            } catch (\Exception $e) {
+                echo "Error: " . $e;
             }
-            $type->delete();
-        } catch (\Exception $e) {
-            echo "Error: " . $e;
+        } else {
+            $thongbao = 'Bạn không được phép xóa vì có 1 đối tượng khác đang sử dụng thông tin này';
         }
 
-        return redirect('admin/loai/danhsach')->with('thongbao', 'Bạn đã xóa thành công');
+        return redirect('admin/loai/danhsach')->with('thongbao', $thongbao);
     }
 
 }
