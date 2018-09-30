@@ -263,7 +263,7 @@ class PageController extends Controller
                 $cart = new Cart($old_cart);
                 $cart->add($product, $id);
                 $req->session()->put('cart', $cart);
-                return redirect()->back()->with('thongbao', 'Thêm vào giỏ hàng thành công');
+                return redirect()->back();//->with('thongbao', 'Thêm vào giỏ hàng thành công');
             } else {
                 return redirect()->back()->with('thongbao', 'Sản phẩm hiện hết hàng. Hàng mới sắp về.');
             }
@@ -274,7 +274,7 @@ class PageController extends Controller
                     $cart->add($product, $id);
                     $req->session()->put('cart', $cart);
 //                    return redirect()->back();
-                    return redirect()->back()->with('thongbao', 'Thêm vào giỏ hàng thành công');
+                    return redirect()->back();//->with('thongbao', 'Thêm vào giỏ hàng thành công');
                 }else{
                     return redirect()->back()->with('thongbao', 'Sản phẩm hiện đã được đặt tối đa trong giỏ hàng');
                 }
@@ -282,7 +282,7 @@ class PageController extends Controller
                 $cart = new Cart($old_cart);
                 $cart->add($product, $id);
                 $req->session()->put('cart', $cart);
-                return redirect()->back()->with('thongbao', 'Thêm vào giỏ hàng thành công');
+                return redirect()->back();//->with('thongbao', 'Thêm vào giỏ hàng thành công');
             }
         }
 
