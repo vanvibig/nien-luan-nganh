@@ -91,7 +91,7 @@ Route::get('del-cart/{id}', [
 
 Route::get('dat-hang', [
     'as' => 'dathang',
-    'uses' => 'PageController@getCheckout'
+    'uses' => 'PageController@getCheckoutgetCheckout'
 ]);
 
 Route::post('dat-hang', [

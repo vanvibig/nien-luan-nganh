@@ -42,39 +42,40 @@
                         <tr class="odd gradeX" align="center">
                             <td>{{ $product->id }}</td>
                             <td class="col-sm-2 text-center">
-                                <div style="text-align: center" class="label label-default">{{ $product->name }}</div>
                                 <div class="clearfix"></div>
                                 <br>
                                 <div class="col-sm-12"><img class="img-fluid img-responsive center-block"
-                                                            style="max-width:60%"
+                                                            style="max-width:40%"
                                                             src="source/image/product/{{ $product->image }}"
                                                             alt=""></div>
                                 <div class="clearfix clear"></div>
                                 <br>
-                                <div class="col-sm-12">
-                                    @foreach($product->type_detail as $type)
-                                        <a class="label label-default"
-                                           href="{{ route('danhsachtheoloai', $type->id) }}">{{ $type->name }}</a>
-                                    @endforeach
+                                <div>
+                                    <i class="fa fa-trash-o  fa-fw"></i><a class="confirmation"
+                                                                           href="admin/sanpham/xoa/{{ $product->id }}">
+                                        Xoá</a>
+                                    <i class="fa fa-pencil fa-fw"></i> <a
+                                            href="admin/sanpham/sua/{{ $product->id }}">Sửa</a>
                                 </div>
-                                <div class="clearfix clear"></div>
+                            </td>
+                            <td>
+                                <div style="text-align: center" class="label label-default col-12">{{ $product->name }}</div>
+                                <div class="clearfix"></div>
                                 <br>
+                                <div class="col-sm-12">{!! str_limit($product->description, 100) !!}</div>
                                 <div class="col-sm-12">
                                     @foreach($product->author as $author)
                                         <a class="label label-default"
                                            href="{{ route('danhsachtheotacgia', $author->id) }}">{{ $author->name }}</a>
                                     @endforeach
+                                    &nbsp;|&nbsp;
+                                    @foreach($product->type_detail as $type)
+                                        <a class="label label-default"
+                                           href="{{ route('danhsachtheoloai', $type->id) }}">{{ $type->name }}</a>
+                                    @endforeach
                                 </div>
-                                <div class="clearfix"></div>
-                                <br>
-                                <div>
-                                    <i class="fa fa-trash-o  fa-fw"></i><a class="confirmation"
-                                            href="admin/sanpham/xoa/{{ $product->id }}"> Xoá</a>
-                                    <i class="fa fa-pencil fa-fw"></i> <a
-                                            href="admin/sanpham/sua/{{ $product->id }}">Sửa</a>
-                                </div>
+
                             </td>
-                            <td>{!! $product->description !!}</td>
                             <td>{{ $product->view_count }}</td>
                             <td>{{ $product->unit_price }} đ</td>
                             <td>{{ $product->promotion_price }} đ</td>
