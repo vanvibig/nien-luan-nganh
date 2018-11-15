@@ -6,16 +6,7 @@
                     <h4 class="widget-title">Information</h4>
                     <div>
                         <ul>
-                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web Design</a>
-                            </li>
-                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web
-                                    development</a></li>
-                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Marketing</a>
-                            </li>
-                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Tips</a></li>
-                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Resources</a>
-                            </li>
-                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Illustrations</a>
+                            <li><a href="https://vanvibig.github.io/"><i class="fa fa-chevron-right"></i> About me</a>
                             </li>
                         </ul>
                     </div>
