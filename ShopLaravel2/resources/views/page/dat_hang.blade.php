@@ -16,15 +16,15 @@
 
     <div class="container">
         <div id="content">
-
+            @if(Session::has('thongbao'))
+                <div class="alert alert-info">
+                    {{ Session::get('thongbao') }}
+                </div>
+            @endif
             <form action="{{ route('dathang') }}" method="post" class="beta-form-checkout">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <div class="alert alert-info">
-                    @if(Session::has('thongbao'))
-                        {{ Session::get('thongbao') }}
-                </div>
                 <div class="row">
-                    @elseif(Session::has('cart'))
+                    @if(Session::has('cart'))
                         <div class="col-sm-7">
 
                             <h4>Đặt hàng</h4>

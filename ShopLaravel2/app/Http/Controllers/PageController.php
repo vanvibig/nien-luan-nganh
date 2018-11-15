@@ -111,7 +111,6 @@ class PageController extends Controller
     }
 
 
-
     public function getSanPhamXemNhieu()
     {
         $loai_chitiet = Type_detail::all();
@@ -131,8 +130,8 @@ class PageController extends Controller
 
         $sp_khuyenmai = Product::whereHas('promotion', function ($query) {
             $query->where('status', 1)
-                    ->where('end', '>=',  Carbon::today()->format('Y/m/d'))
-                    ->orderByDesc('discount');
+                ->where('end', '>=', Carbon::today()->format('Y/m/d'))
+                ->orderByDesc('discount');
         })->paginate(6);
 
         return view('page.sanphamkhuyenmai', compact('loai_chitiet', 'sp_khuyenmai'));
@@ -223,7 +222,32 @@ class PageController extends Controller
 
         Event::fire('products.view', $sanpham);
 
-        return view('page.chitiet_sanpham', compact('sanpham', 'sp_tuongtu', 'sp_moi', 'cung_loai', 'sp_theoview'));
+
+        $currentItemDetail = $this->getCurrentItemInCart($sanpham);
+
+        return view('page.chitiet_sanpham', compact(
+            'sanpham',
+            'sp_tuongtu',
+            'sp_moi',
+            'cung_loai',
+            'sp_theoview',
+            'currentItemDetail'
+        ));
+    }
+
+    public function getCurrentItemInCart(Product $sanpham)
+    {
+        $cart = Session::get('cart');
+        $currentItemInCart = array_filter($cart->items, function ($el) use ($sanpham) {
+            return ($el['item']->id == $sanpham->id);
+        });
+
+        $currentItemDetail = '';
+        foreach ($currentItemInCart as $item) {
+            $currentItemDetail = $item;
+        }
+
+        return $currentItemDetail;
     }
 
     public function getChiTietTinMoi(Request $req)
@@ -268,14 +292,14 @@ class PageController extends Controller
                 return redirect()->back()->with('thongbao', 'Sản phẩm hiện hết hàng. Hàng mới sắp về.');
             }
         } else {
-            if (array_key_exists($id, $old_cart->items)){
-                if($product->amount - $old_cart->items[$id]['qty'] >= 1) {
+            if (array_key_exists($id, $old_cart->items)) {
+                if ($product->amount - $old_cart->items[$id]['qty'] >= 1) {
                     $cart = new Cart($old_cart);
                     $cart->add($product, $id);
                     $req->session()->put('cart', $cart);
 //                    return redirect()->back();
                     return redirect()->back();//->with('thongbao', 'Thêm vào giỏ hàng thành công');
-                }else{
+                } else {
                     return redirect()->back()->with('thongbao', 'Sản phẩm hiện đã được đặt tối đa trong giỏ hàng');
                 }
             } else {

@@ -38,7 +38,7 @@
                             </div>
                             <div>
                                 <lable>Còn lại:</lable>
-                                {{ $sanpham->amount }} sản phẩm
+                                {{ $sanpham->amount - $currentItemDetail['qty'] }} sản phẩm
                             </div>
                             <div>
                                 <lable>Tác giả:</lable>
