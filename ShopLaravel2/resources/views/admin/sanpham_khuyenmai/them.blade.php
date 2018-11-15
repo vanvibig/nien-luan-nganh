@@ -38,7 +38,7 @@
                             <div>
                                 @foreach($promotions as $promotion)
                                     <div class="col-sm-12">
-                                        <input name="promotions[]" value="{{ $promotion->id }}" type="checkbox"
+                                        <input name="promotions[]" value="{{ $promotion->id }}" type="radio"
                                                class="form-check-input"/>
                                         <label class="form-check-label">{{ $promotion->name }}</label>
                                     </div>
