@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label>Năm sinh</label>
-                            <input value="{{ $author->yearofbirth }}" class="form-control" name="yearofbirth"
+                            <input type="number" value="{{ $author->yearofbirth }}" class="form-control" name="yearofbirth"
                                    id="yearofbirth"/>
                         </div>
                         <div class="form-block">

@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <label>Điện thoại</label>
-                            <input class="form-control" name="phone"/>
+                            <input type="number" class="form-control" name="phone"/>
                         </div>
                         <div class="form-group">
                             <label>Địa chỉ</label>

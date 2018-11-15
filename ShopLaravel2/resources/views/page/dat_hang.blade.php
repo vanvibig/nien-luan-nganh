@@ -151,16 +151,21 @@
                                                                     <span class="glyphicon glyphicon-remove"></span>
                                                                 </a>
                                                             </div>
-                                                            @if($product['item']['promotion_price'] == 0)
+                                                            @if(count($product['item']['promotion']) == 0 || $product['item']['promotion'][0]->status == 0)
                                                                 <span>{{ number_format($product['item']['unit_price']) }}
                                                                     đ</span>
-                                                            @else
-                                                                <span class="flash-del">{{ number_format($product['item']['unit_price']) }}
-                                                                    đ</span>
-                                                                <br>
-                                                                <span class="flash-sale">{{ number_format($product['item']['promotion_price']) }}
-                                                                    đ</span>
                                                             @endif
+                                                            @foreach($product['item']['promotion'] as $prom)
+                                                                @if($prom->status == 1 && Carbon\Carbon::today() >= $prom->start && Carbon\Carbon::today() <= $prom->end)
+                                                                    <span class="flash-del">{{ number_format($product['item']['unit_price']) }}
+                                                                        đ</span>
+                                                                    <span class="flash-sale">&nbsp;-{{ $prom->discount}}
+                                                                        %</span>
+                                                                    <br>
+                                                                    <span class="flash-sale">&nbsp;{{ number_format($product['item']['unit_price']*(1 - $prom->discount/100))}}
+                                                                        đ</span>
+                                                                @endif
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </li>
@@ -171,7 +176,8 @@
                                     <div class="your-order-item">
                                         <div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
                                         <div class="pull-right"><h5
-                                                    class="color-black">{{ number_format(Session('cart')->totalPrice) }}
+                                                    class="color-black">
+                                                {{ number_format(Session('cart')->totalPrice) }}
                                                 đ</h5></div>
                                         <div class="clearfix"></div>
                                     </div>

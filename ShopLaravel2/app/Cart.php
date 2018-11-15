@@ -19,17 +19,31 @@ class Cart
 
     public function add($item, $id)
     {
-        $giohang = ['qty' => 0, 'price' => $item->unit_price, 'item' => $item];
+
+
+        $priceAfterReducePromotion = 0;
+
+        if (isset($item->promotion)) {
+            $priceAfterReducePromotion = $item->unit_price;
+        }
+
+        foreach ($item->promotion as $prom) {
+            if ($prom->status == 1 && \Carbon\Carbon::today() >= $prom->start && \Carbon\Carbon::today() <= $prom->end) {
+                $priceAfterReducePromotion = $item->unit_price * (1 - $prom->discount / 100);
+            }
+        }
+
+        $giohang = ['qty' => 0, 'price' => $priceAfterReducePromotion, 'item' => $item];
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
                 $giohang = $this->items[$id];
             }
         }
         $giohang['qty']++;
-        $giohang['price'] = $item->unit_price * $giohang['qty'];
+        $giohang['price'] = $priceAfterReducePromotion * $giohang['qty'];
         $this->items[$id] = $giohang;
         $this->totalQty++;
-        $this->totalPrice += $item->unit_price;
+        $this->totalPrice += $priceAfterReducePromotion;
     }
 
     //xóa 1

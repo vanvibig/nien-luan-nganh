@@ -59,11 +59,11 @@
                         </div>
                         <div class="form-group">
                             <label>Giá gốc</label>
-                            <input class="form-control" name="unit_price"/>
+                            <input type="number" class="form-control" name="unit_price"/>
                         </div>
                         <div class="form-group">
                             <label>Giá khuyến mãi</label>
-                            <input class="form-control" name="promotion_price"/>
+                            <input type="number" class="form-control" name="promotion_price"/>
                         </div>
                         <div class="form-group">
                             <label>Ảnh</label>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="form-group">
                             <label>Số lượng</label>
-                            <input class="form-control" name="amount"/>
+                            <input type="number" class="form-control" name="amount"/>
                         </div>
                         <div class="form-group">
                             <label>Mới</label>

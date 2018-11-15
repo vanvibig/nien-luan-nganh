@@ -133,6 +133,7 @@ class ProductController extends Controller
 
 
         $product->description = $req->description;
+        $product->amount = $req->amount;
         $product->unit_price = $req->unit_price;
         $product->promotion_price = $req->promotion_price;
 
@@ -161,9 +162,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $thongbao = '';
         if (
-            count($product->bill_detail()->get()) == 0 &&
-            count($product->type_detail()->get()) == 0 &&
-            count($product->promotion()->get()) == 0
+            count($product->bill_detail()->get()) == 0
         ) {
             try {
                 if (file_exists('source/image/product/' . $product->image)) {

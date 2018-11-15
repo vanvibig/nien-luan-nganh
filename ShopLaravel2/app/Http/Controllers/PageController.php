@@ -238,6 +238,7 @@ class PageController extends Controller
     public function getCurrentItemInCart(Product $sanpham)
     {
         $cart = Session::get('cart');
+        if (!isset($cart)) return;
         $currentItemInCart = array_filter($cart->items, function ($el) use ($sanpham) {
             return ($el['item']->id == $sanpham->id);
         });
@@ -277,6 +278,7 @@ class PageController extends Controller
     public function getAddToCart(Request $req, $id)
     {
         $product = Product::find($id);
+
         $old_cart = Session('cart') ? Session::get('cart') : null;
 //        $old_cart->items[$id]['item']['amount'];
 //        dd($old_cart->items[$id]['item']['amount'] - $product->amount);

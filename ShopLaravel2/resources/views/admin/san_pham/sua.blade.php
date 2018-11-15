@@ -91,6 +91,10 @@
                             <input value="{{ $product->unit }}" class="form-control" name="unit"/>
                         </div>
                         <div class="form-group">
+                            <label>Số lượng</label>
+                            <input type="number" value="{{ $product->amount }}" class="form-control" name="amount"/>
+                        </div>
+                        <div class="form-group">
                             <label>Mới</label>
                             <label class="radio-inline">
                                 <input name="new" value="1"

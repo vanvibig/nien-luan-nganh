@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label>Năm sinh</label>
-                            <input class="form-control" name="yearofbirth" id="yearofbirth"/>
+                            <input type="number" class="form-control" name="yearofbirth" id="yearofbirth"/>
                         </div>
                         <div class="form-block">
                             <label>Giới tính </label>

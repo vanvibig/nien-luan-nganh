@@ -38,7 +38,11 @@
                             </div>
                             <div>
                                 <lable>Còn lại:</lable>
-                                {{ $sanpham->amount - $currentItemDetail['qty'] }} sản phẩm
+                                @if(isset($cart))
+                                    {{ $sanpham->amount - $currentItemDetail['qty'] }} sản phẩm
+                                @else
+                                    {{ $sanpham->amount }} sản phẩm
+                                @endif
                             </div>
                             <div>
                                 <lable>Tác giả:</lable>
