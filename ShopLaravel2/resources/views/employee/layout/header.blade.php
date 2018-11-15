@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="admin/sanpham/danhsach">Employee Area - Shop Laravel</a>
+        <a class="navbar-brand" href="#">Employee Area - Shop Laravel</a>
     </div>
     <!-- /.navbar-header -->
     <div class="navbar-header">
