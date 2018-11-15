@@ -114,7 +114,7 @@
                             <div class="row">
                                 <ul class="container-fluid" style="list-style: none;">
                                     @foreach($new_product as $new)
-                                        <li class="col-sm-4" style="min-height: 415px;">
+                                        <li class="col-sm-4" style="min-height: 440px;">
                                             <div style="margin: 12px" class="">
                                                 <div class="single-item">
                                                     <div class="row w3-display-container">
@@ -210,7 +210,7 @@
                                     @foreach($sanpham_khuyenmai as $spkm)
                                         @if(count($spkm->promotion) != 0)
                                             @if($spkm->promotion[0]->status == 1)
-                                                <li class="col-sm-4" style="min-height: 415px;">
+                                                <li class="col-sm-4" style="min-height: 440px;">
                                                     <div style="margin: 12px" class="">
                                                         <div class="single-item">
                                                             <div class="row">
